@@ -32,7 +32,7 @@ export const ZH_TO_EN: Record<string, string> = {
   /* Cookie 提示 */
   'Cookie 与本地存储确认': 'Cookie and local storage notice',
   '本站如何使用 Cookie': 'How this site uses cookies',
-  '本站不设追踪型 Cookie，仅用浏览器本地存储记住主题偏好、翻页方向和本提示的确认状态，数据不出你的设备。详见': 'This site sets no tracking cookies. It only uses browser local storage to remember your theme preference, page direction and whether you dismissed this notice; nothing ever leaves your device. See ',
+  '本站不设追踪型 Cookie，仅用浏览器本地存储记住偏好设置；打开文章时会向自建接口发送文章路径以统计浏览次数，不涉及任何身份信息。详见': 'This site sets no tracking cookies. It only uses browser local storage to remember your preferences; when you open an article, the article path is sent to a self-hosted endpoint to count views, with no identity information involved. See ',
   '隐私政策': 'Privacy Policy',
   '取消': 'Cancel',
   '知道了': 'Got it',

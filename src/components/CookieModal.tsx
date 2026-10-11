@@ -40,7 +40,7 @@ export function CookieModal() {
       <div className="cookie-modal-card">
         <h2>{t('本站如何使用 Cookie')}</h2>
         <p>
-          {t('本站不设追踪型 Cookie，仅用浏览器本地存储记住主题偏好、翻页方向和本提示的确认状态，数据不出你的设备。详见')}
+          {t('本站不设追踪型 Cookie，仅用浏览器本地存储记住偏好设置；打开文章时会向自建接口发送文章路径以统计浏览次数，不涉及任何身份信息。详见')}
           <a
             href="#/privacy"
             onClick={(e) => {

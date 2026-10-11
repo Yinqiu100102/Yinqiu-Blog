@@ -27,18 +27,19 @@ export default function Privacy() {
 
       <Panel title={t('隐私说明')}>
         <Zh className="article-body">
-          <p>最后更新：2026-09-26</p>
+          <p>最后更新：2026-10-12</p>
 
           <h2>一句话版本</h2>
           <p>
-            这是一个纯静态博客：没有账号系统、没有统计脚本、没有广告，也不收集任何个人信息。站点只在你自己的浏览器里保存少量功能所必需的本地数据（作用等同于
-            Cookie），它们不会离开你的设备。
+            这是一个纯静态博客：没有账号系统、没有广告，也不收集任何个人信息。文章内置了自建的浏览计数器，只累计每篇文章被阅读的次数（仅记录文章路径和次数，不涉及访问者身份）。此外，站点只在你自己的浏览器里保存少量功能所必需的本地数据（作用等同于
+            Cookie）。
           </p>
 
           <h2>我们保存了哪些数据</h2>
           <p>
-            本站不会主动写入任何 HTTP Cookie。为了记住你的偏好，以下功能通过浏览器的 localStorage 和
-            sessionStorage（作用等同于 Cookie 的本地存储）保存数据；这些偏好都可以在
+            本站不会主动写入任何 HTTP Cookie。为了记住你的偏好并支持浏览计数等少量功能，以下数据通过浏览器的
+            localStorage 和 sessionStorage（作用等同于 Cookie
+            的本地存储）保存；其中偏好类的项都可以在
             <a href="#/settings" onClick={nav('/settings')}>
               设置页
             </a>
@@ -67,11 +68,26 @@ export default function Privacy() {
             <strong>hcl-nav-seen</strong>
             （sessionStorage，关闭标签页后清除）——配合上一项判断是否播放进场动画。
           </p>
+          <p>
+            <strong>hcl-views-reported</strong>
+            （sessionStorage，关闭标签页后清除）——记录本次会话中已计入浏览数的文章，避免同一篇文章反复打开被重复计数。
+          </p>
           <p>清除浏览器的站点数据即可删除以上全部内容，功能不受影响，只是偏好需要重新设置。</p>
+
+          <h2>文章浏览数</h2>
+          <p>
+            文章页和文章列表会展示每篇文章的浏览次数。打开文章时，浏览器向站主自建的统计接口发送一次计数请求，请求里只有文章路径（例如
+            /posts/about）；列表页则会一次性批量读取各文章的浏览数用于展示。
+          </p>
+          <p>
+            服务器上只保存「文章路径 → 浏览次数」这一项对应关系，不保存 IP
+            地址、浏览器信息或任何可识别身份的数据，统计接口也不使用
+            Cookie。同一会话内重复打开同一篇文章不会被重复计数。
+          </p>
 
           <h2>我们不做什么</h2>
           <p>
-            不接入任何访问统计或分析服务；不嵌入广告或跨站追踪脚本；不收集、不上传任何可识别个人身份的信息；也没有登录系统，因此不存在账号数据。
+            不接入任何第三方访问统计或分析服务；不嵌入广告或跨站追踪脚本；不收集、不上传任何可识别个人身份的信息；也没有登录系统，因此不存在账号数据。文章浏览数由站主自建的极简接口统计，只累计次数、不涉及身份。
           </p>
 
           <h2>第三方服务</h2>
@@ -101,21 +117,23 @@ export default function Privacy() {
         </Zh>
 
         <En className="article-body">
-          <p>Last updated: 2026-09-26</p>
+          <p>Last updated: 2026-10-12</p>
 
           <h2>In one sentence</h2>
           <p>
-            This is a purely static blog: no accounts, no analytics scripts, no ads, and no collection
-            of any personal information. The site only stores a small amount of locally-required data
-            (the equivalent of cookies) in your own browser, and it never leaves your device.
+            This is a purely static blog: no accounts, no ads, and no collection of any personal
+            information. Articles include a self-hosted view counter that simply tallies how often
+            each article is read (it records only the article path and the count — never the
+            visitor's identity). The site also stores a small amount of locally-required data (the
+            equivalent of cookies) in your own browser.
           </p>
 
           <h2>What we store</h2>
           <p>
-            This site never sets any HTTP cookies of its own accord. To remember your preferences, the
-            features below store data through your browser's localStorage and sessionStorage (local
-            storage that works like cookies). You can adjust all of these preferences at any time on
-            the{' '}
+            This site never sets any HTTP cookies of its own accord. To remember your preferences and
+            support a few features (such as view counting), the items below store data through your
+            browser's localStorage and sessionStorage (local storage that works like cookies). You
+            can adjust preference items at any time on the{' '}
             <a href="#/settings" onClick={nav('/settings')}>
               Settings
             </a>{' '}
@@ -150,15 +168,35 @@ export default function Privacy() {
             the item above to decide whether the entrance animation plays.
           </p>
           <p>
+            <strong>hcl-views-reported</strong> (sessionStorage, cleared when the tab is closed) —
+            keeps track of which articles have already been counted in this session, so reopening the
+            same article doesn't inflate its view count.
+          </p>
+          <p>
             Clearing your browser's site data deletes everything listed above. Nothing breaks — you
             will just need to set your preferences again.
           </p>
 
+          <h2>Article view counts</h2>
+          <p>
+            Article pages and the article list show how many times each article has been read. When
+            you open an article, your browser sends a single counting request to a self-hosted
+            endpoint, and the request contains nothing but the article path (for example
+            /posts/about); the list page fetches all articles' counts in one batch for display.
+          </p>
+          <p>
+            On the server, only the mapping of article path to view count is stored. No IP addresses,
+            browser details or any other identifying information are kept, and the counting endpoint
+            sets no cookies. Reopening the same article within one session is not counted twice.
+          </p>
+
           <h2>What we don't do</h2>
           <p>
-            We do not use any visitor analytics or measurement services; we do not embed ads or
+            We do not use any third-party analytics or measurement services; we do not embed ads or
             cross-site tracking scripts; we do not collect or upload any personally identifiable
-            information; and there is no login system, so no account data exists.
+            information; and there is no login system, so no account data exists. Article view counts
+            come from a minimal self-hosted counter that tallies reads per article and never involves
+            visitor identity.
           </p>
 
           <h2>Third-party services</h2>

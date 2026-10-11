@@ -8,6 +8,9 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-12', text: '提示条底部新增进度条：与 3 秒自动消失同步，从满宽向左收缩直至滑出，颜色与提示条左侧强调条一致；拖拽时进度暂停，松手后重新计时。深色模式下提示条底色压暗，观感更沉稳' },
+  { date: '2026-10-12', text: '圆角风格：板块与内部卡片的圆角拉开层级（外大内小），导航栏一级按钮改为胶囊形；导航栏两端边距收紧、深浅切换与菜单按钮间距缩小，页面滚动到头时不再触发浏览器的越界回弹与下拉刷新' },
+  { date: '2026-10-12', text: '隐私政策补充文章浏览数说明（仅统计路径与次数、不涉及身份信息），Cookie 弹窗提示同步更新；修复首页「敬请期待」按钮与「阅读文章」按钮高度不一致' },
   { date: '2026-10-10', text: '首页「敬请期待」按钮改为可点击，点击后从右上角滑出提示条；提示条支持多条同时显示并向下堆叠到接近网页底部，停稳 3 秒后自动消失，也可用指针向右拖动划出' },
   { date: '2026-10-10', text: '提示条动画：从视口右外侧偏下斜向往左上滑入，纵向先到位再水平滑入，进出场与堆叠重排统一为 0.55 秒缓出曲线；材质沿用站内浮层的半透明底 + 遮罩模糊' },
   { date: '2026-10-09', text: '设置页新增「样式」选项：可在直角风格与圆角风格之间切换全站边角，圆角风格为小圆角 + 曲率连续（G2）的超椭圆转角' },
@@ -75,6 +78,9 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-12', text: 'Toasts now show a progress bar along the bottom, synchronized with the 3-second auto-dismiss: it shrinks from full width until the toast slides out, colored like the accent bar on the left; the progress pauses while dragging and restarts after release. In dark mode the toast background is darkened for a calmer look' },
+  { date: '2026-10-12', text: 'Rounded style: nested cards inside a panel now use a smaller radius than the panel itself, and top-level navbar buttons became pill-shaped; the navbar edge margins were tightened, the theme and menu buttons sit closer together, and hard overscroll no longer triggers the browser bounce or pull-to-refresh' },
+  { date: '2026-10-12', text: 'The privacy policy now explains article view counting (paths and counts only, never identity), with the cookie notice updated to match; fixed a height mismatch between the "Read posts" and "Stay tuned" buttons on the home page' },
   { date: '2026-10-10', text: 'The home "Coming soon" button is now clickable and slides a toast in from the top-right corner; toasts can be shown together and stack downwards until they almost reach the bottom of the page, dismiss themselves after 3 seconds, and can also be dragged away to the right with the pointer' },
   { date: '2026-10-10', text: 'Toast motion: they enter diagonally from below the right edge of the viewport, settling vertically first and then sliding in horizontally, with the enter, exit and stack-reflow animations all on one 0.55s ease-out curve; the material reuses the site overlay look of a translucent fill plus backdrop blur' },
   { date: '2026-10-09', text: 'Added a "Corners" option to Settings: switch the site-wide corner style between right-angle and rounded, where rounded uses a small radius with a curvature-continuous (G2) squircle' },

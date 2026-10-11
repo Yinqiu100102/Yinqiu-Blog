@@ -28,6 +28,9 @@ function ToastCard({
 }) {
   const [phase, setPhase] = useState<Phase>('enter');
   const [dragging, setDragging] = useState(false);
+  /* 每次拖拽结束（未划出）自增：作为进度条的 key 让它重新挂载、从头播放，
+     与松手后重新计满 3s 的消失计时保持同步 */
+  const [dragCount, setDragCount] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ id: number; startX: number } | null>(null);
   const dismissRef = useRef(onDismiss);
@@ -98,10 +101,19 @@ function ToastCard({
     }
     if (dismiss) {
       setPhase('leave');
+    } else {
+      setDragCount((c) => c + 1);
     }
   };
 
-  const stateClass = phase === 'enter' ? ' toast-in' : phase === 'leave' ? ' toast-out' : '';
+  const stateClass =
+    phase === 'enter'
+      ? ' toast-in'
+      : phase === 'leave'
+        ? ' toast-out'
+        : dragging
+          ? ' is-live is-dragging'
+          : ' is-live';
 
   return (
     <div
@@ -113,6 +125,7 @@ function ToastCard({
       onPointerCancel={(e) => onPointerEnd(e, false)}
     >
       {message}
+      <span key={dragCount} className="toast-progress" aria-hidden="true" />
     </div>
   );
 }

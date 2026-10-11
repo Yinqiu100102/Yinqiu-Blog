@@ -133,6 +133,9 @@ html {
      常规手机模式下本来就不会触发，因此这条对正常浏览没有影响。 */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* 到头就停：禁掉浏览器的下拉刷新和越界回弹（橡皮筋），
+     强行往上/往下拉时整页不再被拖动，顶栏内容保持不动 */
+  overscroll-behavior-y: none;
 }
 
 /* 移除移动端默认点击高亮（蓝/灰底），需覆盖到所有元素 */
@@ -553,10 +556,10 @@ html[data-lang="en"] .home-hero p {
 
 /* 与主按钮并排的次要按钮：沿用社交按钮外观，尺寸与主按钮一致 */
 .social-btn.hero-cta-secondary {
+  font: inherit;
   padding: 10px 24px;
   font-size: 1rem;
   font-weight: 600;
-  font-family: inherit;
   cursor: pointer;
 }
 
@@ -1071,11 +1074,11 @@ html::before {
   justify-content: space-between;
   /* 用 rem 定义，随根字号等比缩放（4rem = 原 64px） */
   height: 4rem;
-  /* 不吃 .container 的 1024px 宽度限制：品牌贴最左、按钮贴最右，
-     但左右内边距必须与 .container 一致，才能和正文左右边缘对齐 */
+  /* 不吃 .container 的 1024px 宽度限制：品牌贴最左、按钮贴最右。
+     导航两端用比正文更小的边距，让控件更贴近窗口边缘 */
   max-width: none;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding-left: 13px;
+  padding-right: 16px;
   /* 作为 .nav-links 绝对居中的参照盒 */
   position: relative;
 }
@@ -1121,11 +1124,10 @@ html::before {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 16px;
-  /* 末尾按钮（主题 / 菜单）是 36px 方形点击区，17px 图标居中后
-     左右各留约 10px 空档，视觉上会比左边贴边的头像多缩进一截。
-     用等量负边距把这块空档挪出留白区，让图标的可视边缘
-     和左侧头像落在同一条留白线上（两侧视觉边距一致）。 */
+  gap: 8px;
+  /* 末尾按钮（主题 / 菜单）是 36px 方形点击区，17px 图标居中后左右各留约 10px 空档。
+     用等量负边距把空档挪出留白区，让图标的可视边缘和左侧头像
+     落在同一条边距线上（两侧的视觉间距一致）。 */
   margin-right: -10px;
 }
 
@@ -2590,6 +2592,8 @@ body.lb-lock {
 }
 
 .toast-card {
+  position: relative;
+  overflow: hidden;
   pointer-events: auto;
   max-width: min(320px, calc(100vw - 32px));
   padding: 10px 16px;
@@ -2618,6 +2622,46 @@ body.lb-lock {
   cursor: grabbing;
 }
 
+/* 深色模式下提示条压暗：--accent-soft 是白色叠加（提亮），
+   用在提示条上偏亮，换成深色半透明底更沉稳 */
+:root:not([data-theme="light"]) .toast-card {
+  background: rgba(12, 12, 12, 0.52);
+}
+
+/* 底部进度条：与自动消失计时同步（3s linear），从满宽开始，
+   左端向右收缩直至消失，走满提示条滑出；
+   拖拽时由 .is-dragging 暂停，松手恢复 */
+.toast-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: right;
+  pointer-events: none;
+}
+
+.toast-card.is-live .toast-progress {
+  animation: toast-progress 3s linear forwards;
+}
+
+.toast-card.is-dragging .toast-progress {
+  animation-play-state: paused;
+}
+
+.toast-card.toast-out .toast-progress {
+  /* 动画移除后回到静态值：保持走空状态，避免滑出瞬间进度条闪回满宽 */
+  transform: scaleX(0);
+  opacity: 0;
+  transition: opacity 0.55s var(--toast-ease);
+}
+
+@keyframes toast-progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
 .toast-card.toast-in {
   transform: translateX(100%);
   translate: 0 calc(100% + 160px);
@@ -2638,11 +2682,11 @@ body.lb-lock {
   --r-xs: 6px;
   --r-sm: 8px;
   --r-md: 12px;
-  --r-lg: 14px;
-  --r-xl: 18px;
-  --r-btn-sm: 8px;
-  --r-btn: 10px;
-  --r-btn-lg: 14px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --r-btn-sm: 6px;
+  --r-btn: 8px;
+  --r-btn-lg: 10px;
   /* 搜索框、标签、滚动条保持胶囊全圆角 */
   --r-pill: 999px;
 }
@@ -2671,6 +2715,21 @@ body.lb-lock {
 :root[data-corner="rounded"] .friend-empty,
 :root[data-corner="rounded"] .sponsor-empty {
   corner-shape: squircle;
+}
+
+/* 嵌套卡片：板块是外层，里面的卡片圆角要比板块小一级，拉开层次 */
+:root[data-corner="rounded"] .panel .post-item,
+:root[data-corner="rounded"] .panel .friend-item {
+  border-radius: var(--r-md);
+}
+
+/* 导航栏按钮：圆角模式下统一改成胶囊形。
+   一级链接用子选择器命中，避免波及「更多」下拉里的选项 */
+:root[data-corner="rounded"] .nav-links > a,
+:root[data-corner="rounded"] .nav-more-toggle,
+:root[data-corner="rounded"] .theme-toggle,
+:root[data-corner="rounded"] .menu-toggle {
+  border-radius: var(--r-pill);
 }
 
 /* 分段控件：外层与首尾项补上圆角，避免选中项的方角底色溢出；
