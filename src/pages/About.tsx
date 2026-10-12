@@ -1,8 +1,9 @@
 import { useT } from '../context/Prefs';
+import { useSiteNav } from '../context/SiteNav';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
 import { Panel } from '../components/Panel';
 import { Giscus } from '../components/Giscus';
-import { IconClockSmall, IconEye, IconPin } from '../components/icons';
+import { IconArrowLeft, IconClockSmall, IconEye, IconPin } from '../components/icons';
 import { useViewCount } from '../hooks/useViews';
 
 /* 联系方式：常用邮箱带「常用」标记 */
@@ -14,6 +15,7 @@ const MAILS_ZH = [
 
 export default function About() {
   const t = useT();
+  const { go } = useSiteNav();
   /* 进入文章时记一次浏览，返回展示用的最新值 */
   const views = useViewCount('/posts/about');
   const projectLink = 'https://s.hortorinteractive.com/K4ZK47';
@@ -32,6 +34,11 @@ export default function About() {
 
   return (
     <main className="post-main container">
+      <a className="post-back" href="#/posts" onClick={(e) => { e.preventDefault(); go('/posts'); }}>
+        <IconArrowLeft />
+        {t('返回文章列表')}
+      </a>
+
       <Panel className="panel-title" label={t('关于我')}>
         <h1>{t('关于我')}</h1>
         <div className="post-meta post-meta-dates">

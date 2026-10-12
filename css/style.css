@@ -1720,6 +1720,37 @@ body.nav-open {
   }
 }
 
+/* 文章页顶部返回按钮：细描边小按钮，悬停走全站 2px 描边高亮 */
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  margin-bottom: 20px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-btn-sm);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+
+.post-back svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.post-back:hover {
+  color: var(--text);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 1px var(--accent-border);
+}
+
 .post-header {
   margin-bottom: 40px;
 }
@@ -2710,7 +2741,6 @@ body.lb-lock {
 :root[data-corner="rounded"] .article-body blockquote,
 :root[data-corner="rounded"] .translate-note,
 :root[data-corner="rounded"] .friend-avatar,
-:root[data-corner="rounded"] .brand-logo,
 :root[data-corner="rounded"] .home-hero .hero-avatar,
 :root[data-corner="rounded"] .friend-empty,
 :root[data-corner="rounded"] .sponsor-empty {
@@ -2724,7 +2754,9 @@ body.lb-lock {
 }
 
 /* 导航栏按钮：圆角模式下统一改成胶囊形。
-   一级链接用子选择器命中，避免波及「更多」下拉里的选项 */
+   一级链接用子选择器命中，避免波及「更多」下拉里的选项；
+   头像（.brand-logo）与按钮同排，也随胶囊走（方形头像即正圆） */
+:root[data-corner="rounded"] .brand-logo,
 :root[data-corner="rounded"] .nav-links > a,
 :root[data-corner="rounded"] .nav-more-toggle,
 :root[data-corner="rounded"] .theme-toggle,

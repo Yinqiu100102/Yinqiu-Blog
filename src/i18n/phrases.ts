@@ -64,6 +64,7 @@ export const ZH_TO_EN: Record<string, string> = {
   '最近写的东西': 'Recent writing',
   '全部文章': 'All posts',
   /* 文章列表 */
+  '返回文章列表': 'Back to articles',
   '这里收录站内全部文章，支持标题、标签与摘要关键词搜索。': 'Every post on this site. Search by title, tag or excerpt keyword.',
   '搜索文章标题、标签或摘要…': 'Search titles, tags or excerpts…',
   '搜索文章': 'Search posts',
