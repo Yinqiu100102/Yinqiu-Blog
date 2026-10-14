@@ -197,6 +197,15 @@ export function IconArrowUp() {
   );
 }
 
+/* 视频播放数前的播放图标：与全站描边图标同风格 */
+export function IconPlay() {
+  return (
+    <svg className="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M7 5.5v13l12-6.5-12-6.5z" />
+    </svg>
+  );
+}
+
 /* 浏览数前的眼睛图标 */
 export function IconEye() {
   return (

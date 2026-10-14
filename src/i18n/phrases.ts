@@ -71,6 +71,16 @@ export const ZH_TO_EN: Record<string, string> = {
   '没有找到相关文章，换个关键词试试？': 'No matching posts. Try another keyword.',
   '文章列表': 'Articles',
   '最近文章': 'Recent posts',
+  /* 视频页 */
+  '观看视频': 'Watch videos',
+  '排序方式': 'Sort',
+  '这里是我发布在B站的视频，数据每天同步一次。': "Videos I've published on Bilibili, synced once a day.",
+  'B站视频列表': 'Bilibili videos',
+  '搜索视频标题或简介…': 'Search video titles or descriptions…',
+  '搜索视频': 'Search videos',
+  '没有找到相关视频，换个关键词试试？': 'No matching videos. Try another keyword.',
+  '正在加载视频…': 'Loading videos…',
+  '暂时取不到视频列表，稍后再来看看？': "Can't load the video list right now. Check back later?",
   /* 浏览数 */
   '浏览': 'views',
   /* 标签 */
@@ -143,6 +153,7 @@ export const TITLE_EN: Record<string, string> = {
   '/': 'Hangou',
   '/archive': 'Archive · Hangou',
   '/posts': 'Articles · Hangou',
+  '/videos': 'Videos · Hangou',
   '/friends': 'Friend Links · Hangou',
   '/posts/about': 'About · Hangou',
   '/sponsor': 'Sponsor · Hangou',
@@ -156,6 +167,7 @@ export const TITLE_ZH: Record<string, string> = {
   '/': 'Hangou',
   '/archive': '归档 · Hangou',
   '/posts': '文章 · Hangou',
+  '/videos': '视频 · Hangou',
   '/friends': '友情链接 · Hangou',
   '/posts/about': '关于我 · Hangou',
   '/sponsor': '赞助 · Hangou',

@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export const ORDER = [
   '/',
   '/posts',
+  '/videos',
   '/archive',
   '/friends',
   '/posts/about',

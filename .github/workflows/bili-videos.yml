@@ -1,0 +1,55 @@
+name: Fetch Bilibili videos
+
+# 定时抓取B站主页视频列表，数据写入 public/data/bili-videos.json 并提交。
+# 新提交会触发 deploy.yml 重新部署，让站点带上最新视频数据。
+on:
+  schedule:
+    # UTC 22:00 = 北京时间每天 6:00
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+# 只允许一个抓取任务，避免同时提交互相覆盖
+concurrency:
+  group: bili-videos
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch videos
+        env:
+          BILI_MID: '1937945301'
+          # 可选：配置带 buvid3 的 Cookie 可降低风控概率（仓库 Variable BILI_COOKIE）
+          BILI_COOKIE: ${{ vars.BILI_COOKIE }}
+        run: node scripts/fetch-bili-videos.mjs
+
+      # 数据没变化就不产生空提交
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet -- public/data/bili-videos.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "视频数据无变化，跳过提交"
+          else
+            git config user.name "hangou100102-lgtm"
+            git config user.email "hangou100102-lgtm@users.noreply.github.com"
+            git add public/data/bili-videos.json
+            git commit -m "更新B站视频数据"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push
+        if: steps.commit.outputs.changed == 'true'
+        run: git push

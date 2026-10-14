@@ -1606,6 +1606,12 @@ body.nav-open {
   flex: 0 0 auto;
 }
 
+.post-views .icon-play {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+}
+
 /* 文章页页头：跟随 .post-meta 的字号，与日期对齐 */
 .post-meta .post-views {
   font-size: 0.78rem;
@@ -1696,6 +1702,37 @@ body.nav-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* 视频卡片：封面右下角的时长角标 */
+.video-thumb-link {
+  position: relative;
+}
+
+/* 视频页工具行：排序分段控件与搜索框之间留白 */
+.video-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+
+.video-toolbar .segmented {
+  width: fit-content;
+}
+
+.video-length {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  border-radius: var(--r-xs);
+  pointer-events: none;
 }
 
 /* 文字区：封面下方，普通流式布局，内边距提供呼吸空间 */

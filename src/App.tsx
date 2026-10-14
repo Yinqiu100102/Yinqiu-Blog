@@ -7,6 +7,7 @@ import { normalizePath } from './context/SiteNav';
 import { TITLE_EN, TITLE_ZH } from './i18n/phrases';
 import Home from './pages/Home';
 import Posts from './pages/Posts';
+import Videos from './pages/Videos';
 import Archive from './pages/Archive';
 import Friends from './pages/Friends';
 import About from './pages/About';
@@ -36,6 +37,7 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/posts" element={<Posts />} />
+            <Route path="/videos" element={<Videos />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/posts/about" element={<About />} />
