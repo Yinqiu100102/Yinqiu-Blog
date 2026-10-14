@@ -28,10 +28,17 @@ jobs:
         with:
           node-version: 20
 
+      # 抓取走 Playwright 无头 Chromium（B站对 Node 脚本 TLS 指纹风控）
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Fetch videos
         env:
           BILI_MID: '1937945301'
-          # 可选：配置带 buvid3 的 Cookie 可降低风控概率（仓库 Variable BILI_COOKIE）
+          # 含 SESSDATA 登录态的 Cookie 可显著降低风控概率（仓库 Variable BILI_COOKIE）
           BILI_COOKIE: ${{ vars.BILI_COOKIE }}
         run: node scripts/fetch-bili-videos.mjs
 
