@@ -164,10 +164,13 @@ async function main() {
 
   await browser.close();
 
-  /* bvid 去重（接口偶发重复时保第一条） */
+  /* bvid 去重（接口偶发重复时保第一条）+ 过滤"仅自己可见"的私密投稿 */
   const seen = new Set();
   const videos = [];
   for (const item of items) {
+    if (item.is_self_view) {
+      continue;
+    }
     if (item.bvid && !seen.has(item.bvid)) {
       seen.add(item.bvid);
       videos.push(slimVideo(item));
@@ -186,7 +189,7 @@ async function main() {
   await rename(OUT_TMP, OUT_FILE);
 
   console.log(
-    `已写入 ${path.relative(ROOT, OUT_FILE)}，共 ${payload.videos.length} 个视频（接口 total=${first.total}）`
+    `已写入 ${path.relative(ROOT, OUT_FILE)}，公开视频 ${payload.videos.length} 个（接口 total=${first.total}，其余为仅自己可见）`
   );
 }
 

@@ -1720,6 +1720,52 @@ body.nav-open {
   width: fit-content;
 }
 
+/* 视频列表底部翻页：独立描边按钮组，当前页 2px 描边高亮 */
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pager button {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border);
+  min-width: 42px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: outline-color 0.18s var(--ease), background-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.pager button:hover:not(:disabled) {
+  outline: 2px solid var(--accent-border);
+  outline-offset: -2px;
+  color: var(--text);
+}
+
+.pager button.is-current {
+  outline: 2px solid var(--accent-border);
+  outline-offset: -2px;
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.pager button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+:root[data-corner="rounded"] .pager button {
+  border-radius: var(--r-btn-sm);
+}
+
 .video-length {
   position: absolute;
   right: 8px;

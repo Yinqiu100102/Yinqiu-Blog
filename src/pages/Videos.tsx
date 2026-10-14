@@ -15,6 +15,9 @@ const videoSearchText = (v: BiliVideo) => `${v.title} ${v.desc}`;
 
 type SortKey = 'date' | 'hot';
 
+/* 前端分页：数据已全量下发，这里只做展示切片 */
+const PAGE_SIZE = 12;
+
 /* 单条视频卡片：整卡可点（内层链接自行接管，避免重复打开） */
 function VideoItem({ video }: { video: BiliVideo }) {
   const url = videoUrl(video.bvid);
@@ -81,6 +84,7 @@ export default function Videos() {
   const [videos, setVideos] = useState<BiliVideo[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [sort, setSort] = useState<SortKey>('date');
+  const [page, setPage] = useState(1);
   const search = useSearch(videos ?? [], videoSearchText);
 
   /* 先搜索过滤，再按当前排序重排：时间为新→旧，热度为播放多→少 */
@@ -93,6 +97,23 @@ export default function Videos() {
     }
     return list;
   }, [search.results, sort]);
+
+  /* 搜索或排序变化时回到第一页 */
+  useEffect(() => {
+    setPage(1);
+  }, [search.value, sort]);
+
+  const totalPages = Math.max(1, Math.ceil(shown.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const pageItems = useMemo(
+    () => shown.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE),
+    [shown, safePage]
+  );
+
+  const goto = (target: number) => {
+    setPage(Math.min(Math.max(1, target), totalPages));
+    document.querySelector('.video-toolbar')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     let alive = true;
@@ -175,10 +196,38 @@ export default function Videos() {
                 <p className="no-result" hidden={search.hasResults}>
                   {t('没有找到相关视频，换个关键词试试？')}
                 </p>
-                {shown.map((video) => (
+                {pageItems.map((video) => (
                   <VideoItem key={video.bvid} video={video} />
                 ))}
               </div>
+
+              <nav className="pager" aria-label={t('视频翻页')} hidden={totalPages <= 1}>
+                <button
+                  type="button"
+                  disabled={safePage <= 1}
+                  onClick={() => goto(safePage - 1)}
+                >
+                  {t('上一页')}
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    className={n === safePage ? 'is-current' : ''}
+                    aria-current={n === safePage ? 'page' : undefined}
+                    onClick={() => goto(n)}
+                  >
+                    {n}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  disabled={safePage >= totalPages}
+                  onClick={() => goto(safePage + 1)}
+                >
+                  {t('下一页')}
+                </button>
+              </nav>
             </>
           )}
         </div>
