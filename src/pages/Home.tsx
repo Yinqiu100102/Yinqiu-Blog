@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useT } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
 import { En, Zh } from '../components/LangVariant';
+import { VideoItem } from '../components/VideoCard';
+import { fetchBiliVideos, type BiliVideo } from '../lib/bili';
 import {
   IconAifadian,
   IconBilibili,
@@ -27,6 +30,28 @@ const STACK = [
 export default function Home() {
   const t = useT();
   const { go } = useSiteNav();
+  const [latest, setLatest] = useState<BiliVideo[] | null>(null);
+
+  /* 最新三条公开视频：按发布时间新→旧，前两条正常展示，第三条进"显示更多"卡片 */
+  useEffect(() => {
+    let alive = true;
+    fetchBiliVideos()
+      .then((list) => {
+        if (alive) {
+          const sorted = [...list].sort((a, b) => b.created - a.created);
+          setLatest(sorted.slice(0, 3));
+        }
+      })
+      .catch(() => {
+        /* 数据取不到时整个板块隐藏，不打断首页 */
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const latestVisible = latest?.slice(0, 2) ?? [];
+  const latestMore = latest?.[2];
 
   return (
     <main className="home-main container">
@@ -145,6 +170,28 @@ export default function Home() {
           </En>
         </div>
       </section>
+
+      {latest && latest.length > 0 && (
+        <>
+          <h2 className="home-panel-title">{t('最新视频')}</h2>
+          <p className="home-panel-sub">{t('我在B站发布的最新视频。')}</p>
+          <section className="panel" aria-label={t('最新视频')}>
+            <div className="panel-body panel-list-inner">
+              {latestVisible.map((video) => (
+                <VideoItem key={video.bvid} video={video} />
+              ))}
+              {latestMore && (
+                <VideoItem
+                  key={latestMore.bvid}
+                  video={latestMore}
+                  blur
+                  onMore={() => go('/videos')}
+                />
+              )}
+            </div>
+          </section>
+        </>
+      )}
 
       <h2 className="home-panel-title">{t('关于我')}</h2>
       <p className="home-panel-sub">{t('关于我的一些介绍。')}</p>

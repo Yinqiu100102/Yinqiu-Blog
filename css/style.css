@@ -1709,6 +1709,57 @@ body.nav-open {
   position: relative;
 }
 
+/* 首页"显示更多"卡片：整卡盖模糊浮层，中央提示跳转视频页 */
+.video-more {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-more .post-body {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 封面右下角的时长角标在文字区外，需要单独模糊 */
+.video-more .video-length {
+  filter: blur(5px);
+}
+
+.video-more-thumb {
+  filter: blur(14px);
+  transform: scale(1.12);
+}
+
+.video-more-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.video-more-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(0, 0, 0, 0.66);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.video-more-arrow {
+  transition: transform 0.25s var(--ease);
+}
+
+.video-more:hover .video-more-arrow {
+  transform: translateX(4px);
+}
+
 /* 视频页工具行：排序分段控件与搜索框之间留白 */
 .video-toolbar {
   display: flex;

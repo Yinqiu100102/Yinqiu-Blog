@@ -73,6 +73,10 @@ export const ZH_TO_EN: Record<string, string> = {
   '最近文章': 'Recent posts',
   /* 视频页 */
   '观看视频': 'Watch videos',
+  '最新视频': 'Latest videos',
+  '我在B站发布的最新视频。': 'My latest videos on Bilibili.',
+  '显示更多': 'Show more',
+  '显示更多视频': 'Show more videos',
   '排序方式': 'Sort',
   '这里是我发布在B站的视频，数据每天同步一次。': "Videos I've published on Bilibili, synced once a day.",
   '视频翻页': 'Video pagination',

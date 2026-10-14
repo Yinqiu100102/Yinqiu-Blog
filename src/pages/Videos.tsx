@@ -1,14 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { usePrefs, useT } from '../context/Prefs';
 import { useSearch } from '../hooks/useSearch';
-import {
-  fetchBiliVideos,
-  formatCount,
-  formatDate,
-  videoUrl,
-  type BiliVideo
-} from '../lib/bili';
-import { IconClockSmall, IconPlay } from '../components/icons';
+import { fetchBiliVideos, type BiliVideo } from '../lib/bili';
+import { VideoItem } from '../components/VideoCard';
 
 /* 搜索范围：标题 + 简介 */
 const videoSearchText = (v: BiliVideo) => `${v.title} ${v.desc}`;
@@ -17,66 +11,6 @@ type SortKey = 'date' | 'hot';
 
 /* 前端分页：数据已全量下发，这里只做展示切片 */
 const PAGE_SIZE = 12;
-
-/* 单条视频卡片：整卡可点（内层链接自行接管，避免重复打开） */
-function VideoItem({ video }: { video: BiliVideo }) {
-  const url = videoUrl(video.bvid);
-
-  const nav = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('a')) {
-      return;
-    }
-    window.open(url, '_blank', 'noopener');
-  };
-
-  return (
-    <article className="post-item video-item" onClick={nav}>
-      <a
-        className="post-thumb-link video-thumb-link"
-        href={url}
-        target="_blank"
-        rel="noopener"
-      >
-        <img
-          className="post-thumb"
-          src={video.pic}
-          alt={video.title}
-          loading="lazy"
-          width={320}
-          height={200}
-          referrerPolicy="no-referrer"
-        />
-        <span className="video-length">{video.length}</span>
-      </a>
-      <div className="post-body">
-        <h2>
-          <a href={url} target="_blank" rel="noopener">
-            {video.title}
-          </a>
-        </h2>
-        <div className="post-tags-row">
-          <span className="post-views" aria-label={`${video.play} views`}>
-            <IconPlay />
-            <span data-lang-variant="zh">{formatCount(video.play, 'zh')}播放</span>
-            <span data-lang-variant="en" lang="en">
-              {formatCount(video.play, 'en')} views
-            </span>
-          </span>
-          <span className="post-views" aria-label={`${video.danmaku} danmaku`}>
-            <span data-lang-variant="zh">{formatCount(video.danmaku, 'zh')}弹幕</span>
-            <span data-lang-variant="en" lang="en">
-              {formatCount(video.danmaku, 'en')} danmaku
-            </span>
-          </span>
-          <span className="date">
-            <IconClockSmall />
-            {formatDate(video.created)}
-          </span>
-        </div>
-      </div>
-    </article>
-  );
-}
 
 export default function Videos() {
   const t = useT();
