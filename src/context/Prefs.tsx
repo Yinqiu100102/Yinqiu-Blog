@@ -46,9 +46,9 @@ function readThemeMode(): ThemeMode {
 
 function readCorner(): CornerStyle {
   try {
-    return localStorage.getItem(CORNER_KEY) === 'rounded' ? 'rounded' : 'right';
+    return localStorage.getItem(CORNER_KEY) === 'right' ? 'right' : 'rounded';
   } catch {
-    return 'right';
+    return 'rounded';
   }
 }
 

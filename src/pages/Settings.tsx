@@ -131,8 +131,8 @@ export default function Settings() {
           value={cornerStyle}
           onChange={setCornerStyle}
           options={[
-            { value: 'right', label: t('直角风格') },
-            { value: 'rounded', label: t('圆角风格') }
+            { value: 'rounded', label: t('圆角风格') },
+            { value: 'right', label: t('直角风格') }
           ]}
         />
       </Panel>
