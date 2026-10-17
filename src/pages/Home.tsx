@@ -248,7 +248,7 @@ export default function Home() {
         <div className="hero-social">
           <a
             className="social-btn"
-            href="https://github.com/hangou100102-lgtm"
+            href="https://github.com/Yinqiu100102"
             target="_blank"
             rel="noopener"
             aria-label={t('GitHub主页')}

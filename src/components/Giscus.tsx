@@ -4,7 +4,7 @@ import { useIsLight } from '../context/Prefs';
 
 /* giscus 配置来自 https://giscus.app：
    repo 和 repoId 跟着仓库走，CATEGORY / CATEGORY_ID 是评论落在哪个 Discussion 分类。 */
-const REPO = 'hangou100102-lgtm/Hangou-Code-Lab';
+const REPO = 'Yinqiu100102/Yinqiu-Blog';
 const REPO_ID = 'R_kgDOULrVTw';
 const CATEGORY = 'Announcements';
 const CATEGORY_ID = 'DIC_kwDOULrVT84DGYVe';

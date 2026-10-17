@@ -25,6 +25,6 @@ return [
 
     /* 允许调用浏览数接口的前端来源（CORS 白名单）。
      * 站点部署在 GitHub Pages 上，域名与后端不同，因此必须放行。
-     * 部署稳定后建议把 '*' 换成站点域名，例如 ['https://hangou100102-lgtm.github.io']。 */
+     * 部署稳定后建议把 '*' 换成站点域名，例如 ['https://yinqiu100102.github.io']。 */
     'allow_origins' => ['*']
 ];
