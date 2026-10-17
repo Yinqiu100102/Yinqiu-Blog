@@ -495,6 +495,7 @@ a:hover {
   border-radius: var(--r-xl);
   object-fit: cover;
   border: 1px solid var(--border-strong);
+  transition: opacity 0.3s var(--ease), visibility 0s;
 }
 
 .home-hero h1 {
@@ -504,6 +505,23 @@ a:hover {
   line-height: 1.3;
   letter-spacing: 0.12em;
   margin-bottom: 14px;
+  transition: opacity 0.3s var(--ease), visibility 0s;
+}
+
+/* 头像与名字飞入导航栏期间：原位置元素直接隐藏（克隆体无缝覆盖，无需渐隐）；
+   移除类回滚时按基础规则 0.3s 淡入复原 */
+.brand-flying .hero-avatar,
+.brand-flying .home-hero h1 {
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+
+/* 克隆体落回原位的瞬间：真实元素无过渡直接复现（被克隆体盖住），
+   避免与延迟渐隐的克隆体交叉淡化时亮度下陷 */
+html.hero-instant .hero-avatar,
+html.hero-instant .home-hero h1 {
+  transition: none;
 }
 
 .home-hero p {
@@ -1086,10 +1104,24 @@ html::before {
   font-weight: 700;
   letter-spacing: -0.2px;
   color: var(--text);
+  transition: opacity 0.3s var(--ease), visibility 0s;
 }
 
 .brand:hover {
   text-decoration: none;
+}
+
+/* 首页回滚露出大头像时品牌淡出；visibility 延迟到淡出结束再翻转 */
+.brand.brand-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0s 0.3s;
+}
+
+/* 克隆体落位瞬间品牌无过渡直接显示（克隆体盖在上面），
+   之后克隆体延迟渐隐，合成不透明度全程为 1，杜绝交叉淡化闪烁 */
+.brand.brand-instant {
+  transition: none;
 }
 
 .brand-logo {
@@ -1119,6 +1151,8 @@ html::before {
   display: flex;
   align-items: center;
   gap: 8px;
+  /* 首页隐藏品牌后 .nav-right 成为唯一子项，靠它自己维持贴右 */
+  margin-left: auto;
   /* 末尾按钮（主题 / 菜单）是 36px 方形点击区，17px 图标居中后左右各留约 10px 空档。
      用等量负边距把空档挪出留白区，让图标的可视边缘和左侧头像
      落在同一条边距线上（两侧的视觉间距一致）。 */
