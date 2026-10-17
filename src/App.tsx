@@ -23,7 +23,7 @@ function TitleSync() {
   const location = useLocation();
   useEffect(() => {
     const path = normalizePath(location.pathname);
-    document.title = (lang === 'en' ? TITLE_EN[path] : TITLE_ZH[path]) ?? 'Hangou';
+    document.title = (lang === 'en' ? TITLE_EN[path] : TITLE_ZH[path]) ?? (lang === 'en' ? 'Yinqiu' : '白吟秋');
   }, [lang, location.pathname]);
   return null;
 }

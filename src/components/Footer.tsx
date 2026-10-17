@@ -58,7 +58,7 @@ export function Footer({ showSocial = true }: { showSocial?: boolean }) {
             </div>
           </>
         )}
-        <p>{t('© 2026 Hangou · 保留所有权利')}</p>
+        <p>{t('© 2026 白吟秋 · 保留所有权利')}</p>
       </div>
     </footer>
   );

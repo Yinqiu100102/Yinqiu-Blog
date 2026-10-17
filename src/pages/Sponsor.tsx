@@ -6,8 +6,8 @@ export default function Sponsor() {
 
   return (
     <main className="post-main container">
-      <Panel className="panel-title" label={t('支持 Hangou')}>
-        <h1>{t('支持 Hangou')}</h1>
+      <Panel className="panel-title" label={t('支持白吟秋')}>
+        <h1>{t('支持白吟秋')}</h1>
         <div className="post-meta">
           <span className="tag">{'#'}{t('赞助')}</span>
         </div>

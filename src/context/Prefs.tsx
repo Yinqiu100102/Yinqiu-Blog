@@ -253,6 +253,6 @@ export function useIsLight(): boolean {
 export function useDocumentTitle() {
   const { lang } = usePrefs();
   return (path: string) => {
-    document.title = lang === 'en' ? TITLE_EN[path] ?? TITLE_ZH[path] ?? 'Hangou' : TITLE_ZH[path] ?? 'Hangou';
+    document.title = lang === 'en' ? TITLE_EN[path] ?? TITLE_ZH[path] ?? 'Yinqiu' : TITLE_ZH[path] ?? '白吟秋';
   };
 }

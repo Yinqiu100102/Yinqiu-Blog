@@ -17,7 +17,7 @@ export const ZH_TO_EN: Record<string, string> = {
   '回到顶部': 'Back to top',
   /* 抽屉 */
   '移动端菜单': 'Mobile menu',
-  'Hangou 头像': 'Hangou avatar',
+  '白吟秋头像': 'Yinqiu avatar',
   '博客': 'Blog',
   '友链列表': 'Friends',
   '爱发电': 'Aifadian',
@@ -28,7 +28,7 @@ export const ZH_TO_EN: Record<string, string> = {
   'B站主页': 'Bilibili profile',
   'GitHub主页': 'GitHub profile',
   '爱发电主页': 'Aifadian profile',
-  '© 2026 Hangou · 保留所有权利': '© 2026 Hangou · All rights reserved',
+  '© 2026 白吟秋 · 保留所有权利': '© 2026 Yinqiu · All rights reserved',
   /* Cookie 提示 */
   'Cookie 与本地存储确认': 'Cookie and local storage notice',
   '本站如何使用 Cookie': 'How this site uses cookies',
@@ -37,7 +37,7 @@ export const ZH_TO_EN: Record<string, string> = {
   '取消': 'Cancel',
   '知道了': 'Got it',
   /* 首页 */
-  '你好，这里是 Hangou': 'Hi, this is Hangou',
+  '你好，这里是白吟秋': 'Hi, this is Yinqiu',
   '在这里能看到我的想法': 'This is where you can see my thoughts',
   '个人博客': 'Personal blog',
   '技术分享': 'Tech sharing',
@@ -104,7 +104,7 @@ export const ZH_TO_EN: Record<string, string> = {
   'Thinkreally 的头像': 'Avatar of Thinkreally',
   'Xiaobocm 的头像': 'Avatar of Xiaobocm',
   /* 赞助 */
-  '支持 Hangou': 'Support Hangou',
+  '支持白吟秋': 'Support Yinqiu',
   '支持创作': 'Support my work',
   '赞助支持': 'Support on Aifadian',
   '点击下面的按钮前往爱发电完成赞助。': 'Click the button below to sponsor me on Aifadian.',
@@ -157,30 +157,30 @@ export const ZH_TO_EN: Record<string, string> = {
 
 /* 各页面英文标题 */
 export const TITLE_EN: Record<string, string> = {
-  '/': 'Hangou',
-  '/archive': 'Archive · Hangou',
-  '/posts': 'Articles · Hangou',
-  '/videos': 'Videos · Hangou',
-  '/friends': 'Friend Links · Hangou',
-  '/posts/about': 'About · Hangou',
-  '/sponsor': 'Sponsor · Hangou',
-  '/changelog': 'Changelog · Hangou',
-  '/privacy': 'Privacy Policy · Hangou',
-  '/settings': 'Settings · Hangou'
+  '/': 'Yinqiu',
+  '/archive': 'Archive · Yinqiu',
+  '/posts': 'Articles · Yinqiu',
+  '/videos': 'Videos · Yinqiu',
+  '/friends': 'Friend Links · Yinqiu',
+  '/posts/about': 'About · Yinqiu',
+  '/sponsor': 'Sponsor · Yinqiu',
+  '/changelog': 'Changelog · Yinqiu',
+  '/privacy': 'Privacy Policy · Yinqiu',
+  '/settings': 'Settings · Yinqiu'
 };
 
 /* 中文页面标题 */
 export const TITLE_ZH: Record<string, string> = {
-  '/': 'Hangou',
-  '/archive': '归档 · Hangou',
-  '/posts': '文章 · Hangou',
-  '/videos': '视频 · Hangou',
-  '/friends': '友情链接 · Hangou',
-  '/posts/about': '关于我 · Hangou',
-  '/sponsor': '赞助 · Hangou',
-  '/changelog': '更新日志 · Hangou',
-  '/privacy': '隐私政策 · Hangou',
-  '/settings': '设置 · Hangou'
+  '/': '白吟秋',
+  '/archive': '归档 · 白吟秋',
+  '/posts': '文章 · 白吟秋',
+  '/videos': '视频 · 白吟秋',
+  '/friends': '友情链接 · 白吟秋',
+  '/posts/about': '关于我 · 白吟秋',
+  '/sponsor': '赞助 · 白吟秋',
+  '/changelog': '更新日志 · 白吟秋',
+  '/privacy': '隐私政策 · 白吟秋',
+  '/settings': '设置 · 白吟秋'
 };
 
 /* 全文翻译免责提示（英文） */

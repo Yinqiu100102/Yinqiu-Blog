@@ -1,6 +1,6 @@
 <?php
 /**
- * Hangou 博客 · 后端安装向导
+ * 白吟秋博客 · 后端安装向导
  *
  * 单文件安装程序：环境检查 → 填写信息 → 建库建表 → 创建管理员 → 写入 config.php → 生成 install.lock。
  *
@@ -297,7 +297,7 @@ $form = [
     'db_name'    => '',
     'admin_user' => '',
     'prefix'     => '',
-    'site_name'  => 'Hangou',
+    'site_name'  => '白吟秋',
     'site_url'   => ''
 ];
 
@@ -539,7 +539,7 @@ foreach ($checks as $check) {
         . '</li>';
 }
 
-$body = '<h1>Hangou 博客 · 安装向导</h1>'
+$body = '<h1>白吟秋博客 · 安装向导</h1>'
     . '<p class="lead">填写数据库与管理员信息，程序会自动建库建表、写入配置并锁定安装。</p>'
     . '<div class="card"><h2>环境检查</h2><ul class="checks">' . $envList . '</ul></div>';
 
@@ -585,4 +585,4 @@ $formHtml = '<form method="post" autocomplete="off">'
 
 $body .= '<div class="card">' . $formHtml . '</div>';
 
-render_page('Hangou 博客 · 安装向导', $body);
+render_page('白吟秋博客 · 安装向导', $body);

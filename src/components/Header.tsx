@@ -66,9 +66,9 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
           <img
             className="brand-logo"
             src={import.meta.env.BASE_URL + 'images/avatar.png'}
-            alt={t('Hangou 头像')}
+            alt={t('白吟秋头像')}
           />
-          Hangou
+          白吟秋
         </a>
         <div className="nav-right">
           <div className="nav-links">

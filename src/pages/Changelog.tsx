@@ -8,6 +8,7 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-17', text: '站点名称改为「白吟秋」（英文 Yinqiu），全站标题、页脚、关于页等展示同步更新' },
   { date: '2026-10-14', text: '新增视频页：展示B站主页的投稿视频，含封面、时长、播放数、弹幕数与发布日期，支持标题与简介搜索；首页「敬请期待」按钮改为「看视频」入口。数据由 GitHub Actions 每天从B站同步一次' },
   { date: '2026-10-13', text: '文章页顶部新增「返回文章列表」按钮，看完文章可一键回到列表；圆角风格下导航栏头像也改为胶囊形，与一级按钮保持一致' },
   { date: '2026-10-12', text: '提示条底部新增进度条：与 3 秒自动消失同步，从满宽向左收缩直至滑出，颜色与提示条左侧强调条一致；拖拽时进度暂停，松手后重新计时。深色模式下提示条底色压暗，观感更沉稳' },
@@ -80,6 +81,7 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-17', text: 'Renamed the site to "白吟秋" (English: Yinqiu); titles, footer and the about page now show the new name everywhere' },
   { date: '2026-10-14', text: 'Added a Videos page listing the uploads from my Bilibili space, with cover, duration, play count, danmaku count and publish date, searchable by title and description; the home "Stay tuned" button became a "Watch videos" entry. Data is synced from Bilibili once a day by GitHub Actions' },
   { date: '2026-10-13', text: 'Added a "Back to articles" button at the top of post pages so you can return to the list in one click; in the rounded style, the navbar avatar is now pill-shaped too, matching the other navbar buttons' },
   { date: '2026-10-12', text: 'Toasts now show a progress bar along the bottom, synchronized with the 3-second auto-dismiss: it shrinks from full width until the toast slides out, colored like the accent bar on the left; the progress pauses while dragging and restarts after release. In dark mode the toast background is darkened for a calmer look' },

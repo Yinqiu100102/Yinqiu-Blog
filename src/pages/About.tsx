@@ -73,8 +73,8 @@ export default function About() {
       <Panel title={t('我是谁')}>
         <Zh className="article-body">
           <p>
-            大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者{' '}
-            <strong>hangou</strong>。欢迎来到我的博客。
+            大家好，我是<strong>白吟秋</strong>，也可以叫我{' '}
+            <strong>Yinqiu</strong>。欢迎来到我的博客。
           </p>
 
           <img className="article-cover" src={cover} alt="关于我的配图" loading="lazy" />
@@ -84,7 +84,7 @@ export default function About() {
 
         <En className="article-body">
           <p>
-            Hi, I'm <strong>Hangou</strong> (also written <strong>憨狗</strong> in Chinese).
+            Hi, I'm <strong>Yinqiu</strong> (also written <strong>白吟秋</strong> in Chinese).
             Welcome to my blog.
           </p>
 

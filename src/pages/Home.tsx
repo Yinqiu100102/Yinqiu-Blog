@@ -60,11 +60,11 @@ export default function Home() {
           <img
             className="hero-avatar"
             src="/images/avatar.png"
-            alt="Hangou"
+            alt="白吟秋"
             width="120"
             height="120"
           />
-          <h1>Hangou</h1>
+          <h1>白吟秋</h1>
           <p>{t('在这里能看到我的想法')}</p>
           <ul className="hero-tags">
             <li>
@@ -199,14 +199,14 @@ export default function Home() {
         <div className="panel-body">
           <Zh>
             <p>
-              大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者{' '}
-              <strong>hangou</strong>。
+              大家好，我是<strong>白吟秋</strong>，也可以叫我{' '}
+              <strong>Yinqiu</strong>。
             </p>
             <p>一个在方块世界里搭东西、也在屏幕前琢磨动效的普通玩家。</p>
           </Zh>
           <En>
             <p>
-              Hi, I'm <strong>Hangou</strong> (also written <strong>憨狗</strong> in Chinese).
+              Hi, I'm <strong>Yinqiu</strong> (also written <strong>白吟秋</strong> in Chinese).
             </p>
             <p>
               An ordinary player who builds things in a blocky world and tinkers with motion design

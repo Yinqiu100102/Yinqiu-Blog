@@ -1,6 +1,6 @@
-# Hangou
+# 白吟秋
 
-Hangou 的个人博客，记录学习、代码与生活。
+白吟秋（Yinqiu）的个人博客，记录学习、代码与生活。
 
 > 在线访问：**<https://blog.hangou.top>**
 
@@ -110,4 +110,4 @@ npm run preview  # 本地预览构建产物
 
 ## License
 
-Copyright © 2026 Hangou. All rights reserved.
+Copyright © 2026 白吟秋. All rights reserved.

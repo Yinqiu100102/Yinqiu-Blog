@@ -27,9 +27,9 @@ export const POSTS: Post[] = [
     date: '2026-09-04',
     titleZh: '关于我',
     titleEn: 'About me',
-    excerptZh: '网名憨狗哈，B站我的世界 UP 主，也是 Ci OS 的作者——很高兴认识你。',
+    excerptZh: '网名白吟秋，B站我的世界 UP 主，也是 Ci OS 的作者——很高兴认识你。',
     excerptEn:
-      "You can call me Hangou. I'm a Minecraft creator on Bilibili and the author of Ci OS — nice to meet you.",
+      "You can call me Yinqiu. I'm a Minecraft creator on Bilibili and the author of Ci OS — nice to meet you.",
     altZh: '关于我 配图',
     altEn: 'Illustration for About me',
     tagsZh: [{ label: '置顶', pin: true }, { label: '关于' }],

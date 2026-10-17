@@ -502,7 +502,7 @@ a:hover {
   font-size: 2.2647rem;
   font-weight: 700;
   line-height: 1.3;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.2266em;
   margin-bottom: 14px;
 }
 
@@ -511,12 +511,6 @@ a:hover {
   font-size: 1rem;
   max-width: 560px;
   margin: 0 auto;
-  letter-spacing: 0.1775em;
-}
-
-/* 英文界面：副文本恢复默认字距，避免套用中文的大字距让英文松散难读 */
-html[data-lang="en"] .home-hero p {
-  letter-spacing: 0;
 }
 
 /* 首页问候语下的主按钮：矩形、实心样式（底 --accent-soft、描边 --accent-border），

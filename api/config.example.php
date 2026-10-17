@@ -21,7 +21,7 @@ return [
     'admin_table' => 'admins',
 
     /* 站点名称，供后端脚本读取（前端文案在前端项目里维护） */
-    'site_name' => 'Hangou',
+    'site_name' => '白吟秋',
 
     /* 允许调用浏览数接口的前端来源（CORS 白名单）。
      * 站点部署在 GitHub Pages 上，域名与后端不同，因此必须放行。
