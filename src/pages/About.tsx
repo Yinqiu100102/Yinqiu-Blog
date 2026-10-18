@@ -3,14 +3,14 @@ import { useSiteNav } from '../context/SiteNav';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
 import { Panel } from '../components/Panel';
 import { Giscus } from '../components/Giscus';
-import { IconArrowLeft, IconClockSmall, IconEye, IconPin } from '../components/icons';
+import { IconArrowLeft, IconClockSmall, IconEye, IconGmail, IconMail163, IconPin, IconQq } from '../components/icons';
 import { useViewCount } from '../hooks/useViews';
 
-/* 联系方式：常用邮箱带「常用」标记 */
+/* 联系方式：每个邮箱带对应服务的图标 */
 const MAILS_ZH = [
-  { mail: '2644624556@qq.com', pin: true },
-  { mail: 'jinhui100102@163.com', pin: true },
-  { mail: 'hangou100102@gmail.com', pin: false }
+  { mail: 'yinqiu0102@qq.com', icon: <IconQq /> },
+  { mail: 'yinqiu0102@163.com', icon: <IconMail163 /> },
+  { mail: 'yinqiu0102@gmail.com', icon: <IconGmail /> }
 ];
 
 export default function About() {
@@ -21,11 +21,11 @@ export default function About() {
   const projectLink = 'https://s.hortorinteractive.com/K4ZK47';
   const cover = import.meta.env.BASE_URL + 'images/Image_1764458904822.jpg';
 
-  const mails = (pinLabel: string) => (
+  const mails = () => (
     <ul className="mail-list">
       {MAILS_ZH.map((m) => (
         <li key={m.mail} className="mail-item">
-          {m.pin && <span className="tag tag-pin">{pinLabel}</span>}
+          {m.icon}
           <a href={'mailto:' + m.mail}>{m.mail}</a>
         </li>
       ))}
@@ -159,7 +159,7 @@ export default function About() {
       <Panel title={t('联系方式')}>
         <Zh className="article-body">
           <p>想找我聊聊天、合作或者只是打个招呼，都可以通过这些邮箱联系我：</p>
-          {mails('常用')}
+          {mails()}
         </Zh>
 
         <En className="article-body">
@@ -167,7 +167,7 @@ export default function About() {
             If you'd like to chat, work together, or just say hi, you can reach me at any of these
             addresses:
           </p>
-          {mails('Primary')}
+          {mails()}
         </En>
       </Panel>
 

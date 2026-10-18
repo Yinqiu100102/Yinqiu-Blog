@@ -2093,8 +2093,10 @@ body.nav-open {
   border-color: var(--accent-border);
 }
 
-.mail-item .tag {
-  margin-right: 0;
+/* 邮箱前的服务图标：与文字同色，固定尺寸避免跳动 */
+.mail-item > svg {
+  width: 20px;
+  height: 20px;
   flex: 0 0 auto;
 }
 

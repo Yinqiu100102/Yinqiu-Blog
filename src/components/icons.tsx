@@ -167,6 +167,26 @@ export function IconQq() {
   );
 }
 
+/* 163 邮箱图标：信封 + 163 字样 */
+export function IconMail163() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4.5" width="20" height="15" rx="2" />
+      <path d="m2 7.5 10 5 10-5" />
+      <text x="12" y="18" textAnchor="middle" fontSize="6" fontWeight="bold" fontFamily="Arial, sans-serif" fill="currentColor" stroke="none">163</text>
+    </svg>
+  );
+}
+
+/* Gmail 图标 */
+export function IconGmail() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+    </svg>
+  );
+}
+
 /* 置顶标签前的图钉图标 */
 export function IconPin() {
   return (
