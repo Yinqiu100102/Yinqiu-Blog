@@ -34,10 +34,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # 浏览数接口地址（后端见 api/views.php）。
-          # 在仓库 Settings → Secrets and variables → Actions → Variables 中配置 VITE_VIEWS_API；
-          # 未配置时值为空，页面不显示浏览数。
-          VITE_VIEWS_API: ${{ vars.VITE_VIEWS_API }}
+          # 浏览数接口地址：潮汐提供的评论/浏览量接口，契约兼容 api/views.php。
+          # 接口地址会编译进产物，更换时需改这里并重新构建。
+          VITE_VIEWS_API: https://xitide.top/blog_api.php
 
       # Vite 的 base 为 './'，产物里已是相对路径，无需额外处理子路径
       - name: Upload artifact
