@@ -922,7 +922,7 @@ html.hero-instant .home-hero h1 {
 
 .friend-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 16px;
 }
 
@@ -936,9 +936,9 @@ html.hero-instant .home-hero h1 {
 }
 
 .friend-item {
+  position: relative;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
   padding: 18px;
   border: 1px solid transparent;
   border-radius: var(--r-lg);
@@ -948,19 +948,41 @@ html.hero-instant .home-hero h1 {
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
+.friend-info {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 /* 悬停高亮用描边（与文章卡片一致） */
 .friend-item:hover {
   border-color: var(--accent-border);
   text-decoration: none;
 }
 
+/* 头像作背景，主体靠右显示，上下超出卡片的部分被裁掉 */
 .friend-avatar {
-  width: 48px;
-  height: 48px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 210px;
+  height: 210px;
+  transform: translateY(-50%);
   object-fit: cover;
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: var(--bg-soft);
+}
+
+/* 左侧底色向右渐变透明：文字区纯色可读，头像越靠右越清晰 */
+.friend-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to right, var(--surface) 0%, var(--surface) 50%, transparent 150%);
+  pointer-events: none;
 }
 
 .friend-name {
@@ -2870,9 +2892,12 @@ body.lb-lock {
 
 /* ============ 边角样式（设置页可切换） ============ */
 /* 直角风格（默认）：--r-* 全为 0（见 :root），全站直角。
-   圆角风格：写回克制的「小圆角」，并用 corner-shape: squircle 把圆弧换成
-   超椭圆曲线，使圆角与直角边在切点处曲率连续（G2）。不支持 corner-shape
-   的浏览器会忽略该声明，自动回退为普通圆角，功能不受影响。 */
+   圆角风格：写回克制的「小圆角」；无描边、无阴影的静态面（板块、侧卡、
+   文章图块等）由 src/squircle.ts 用 figma-squircle 生成苹果同款 G2 连续
+   曲线（切点处曲率为 0），以 clip-path 裁出；带描边/悬停高亮/阴影/毛玻璃
+   的元素（按钮、卡片、导航、浮层）保持原生圆角 —— 描边沿原生圆弧绘制，
+   厚度均匀且无 JS 参与，曲线与圆弧混排即 iOS 界面的实际做法。
+   胶囊元素（四角半径 ≥ 短边一半）由引擎自动跳过，保持正圆端头。 */
 :root[data-corner="rounded"] {
   --r-xs: 6px;
   --r-sm: 8px;
@@ -2884,31 +2909,6 @@ body.lb-lock {
   --r-btn-lg: 10px;
   /* 搜索框、标签、滚动条保持胶囊全圆角 */
   --r-pill: 999px;
-}
-
-/* 超椭圆（G2）只用在「纯底面 / 静态卡片」上：这些元素没有 2px 描边高亮，
-   转角不会因超椭圆曲线的抗锯齿而发粗。
-   带描边高亮的交互元素（卡片悬停、按钮、导航、分段控件等）保持普通圆角，
-   这样描边四角才是均匀的 —— 超椭圆曲线会让描边在转角处显粗。 */
-:root[data-corner="rounded"] .panel,
-:root[data-corner="rounded"] .side-card,
-:root[data-corner="rounded"] .stack-item,
-:root[data-corner="rounded"] .nav-drawer,
-:root[data-corner="rounded"] .nav-more-menu,
-:root[data-corner="rounded"] .cookie-modal-card,
-:root[data-corner="rounded"] .toast-card,
-:root[data-corner="rounded"] .toc,
-:root[data-corner="rounded"] .lb-img,
-:root[data-corner="rounded"] .article-body .article-cover,
-:root[data-corner="rounded"] .article-body img,
-:root[data-corner="rounded"] .article-body pre,
-:root[data-corner="rounded"] .article-body blockquote,
-:root[data-corner="rounded"] .translate-note,
-:root[data-corner="rounded"] .friend-avatar,
-:root[data-corner="rounded"] .home-hero .hero-avatar,
-:root[data-corner="rounded"] .friend-empty,
-:root[data-corner="rounded"] .sponsor-empty {
-  corner-shape: squircle;
 }
 
 /* 嵌套卡片：板块是外层，里面的卡片圆角要比板块小一级，拉开层次 */

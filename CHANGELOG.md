@@ -5,6 +5,28 @@
 
 ---
 
+## 2026-10-20 · 变更：友链页卡片改版
+
+### 改动文件
+
+- `src/pages/Friends.tsx`：卡片结构改为「左文字 + 右头像」横向布局，名字只取「 · 」前主名；三张旧卡片简介改为站点 slogan（咡如夏 Protect What You Love.、Thinkreally 探索与爱。、Xiaobocm 我们都爱着地球）；展示链接改为与实际跳转地址一致；新增友链「执着yoyo」（yoyo-coding.github.io/me/，头像 github.com/yoyo-coding.png）
+- `css/style.css`：`.friend-item` 改为横向 flex，头像以 210px 尺寸绝对定位铺在卡片右侧作背景，左侧叠 `::before` 底色渐变（纯色至 50%、渐变尾巴延至 150%）保证文字可读；网格最小列宽 180px → 230px；删除旧的 48px 小头像与圆角模式圆形头像规则
+
+### API 变动
+
+无。
+
+### 影响范围
+
+- 友链页（#/friends）视觉与数据；其余页面零影响
+- 搜索功能不受影响（搜索文本仍含完整名称与网址）
+
+### 回滚方法
+
+`git revert` 本次提交即可恢复旧版友链卡片（纵向布局 + 48px 头像）。
+
+---
+
 ## 2026-10-08 13:35 · 变更：CORS 白名单加入自定义域名 blog.hangou.top
 
 ### 背景

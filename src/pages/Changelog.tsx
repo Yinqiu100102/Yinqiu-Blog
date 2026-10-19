@@ -8,6 +8,7 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-20', text: '友链卡片改版：改为「左文字 + 右头像」布局，头像作背景铺在卡片右侧并配底色渐变保证文字可读；友链简介改为各站 slogan，展示链接与跳转地址保持一致；新增友链「执着yoyo」' },
   { date: '2026-10-17', text: '站点名称改为「白吟秋」（英文 Yinqiu），全站标题、页脚、关于页等展示同步更新' },
   { date: '2026-10-14', text: '新增视频页：展示B站主页的投稿视频，含封面、时长、播放数、弹幕数与发布日期，支持标题与简介搜索；首页「敬请期待」按钮改为「看视频」入口。数据由 GitHub Actions 每天从B站同步一次' },
   { date: '2026-10-13', text: '文章页顶部新增「返回文章列表」按钮，看完文章可一键回到列表；圆角风格下导航栏头像也改为胶囊形，与一级按钮保持一致' },
@@ -81,6 +82,7 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-20', text: 'Friend cards were redesigned: text on the left with the avatar as a background filling the right side, plus a background gradient to keep the text readable; friend descriptions became each site\'s slogan, the shown links now match the destinations, and a new friend "执着yoyo" was added' },
   { date: '2026-10-17', text: 'Renamed the site to "白吟秋" (English: Yinqiu); titles, footer and the about page now show the new name everywhere' },
   { date: '2026-10-14', text: 'Added a Videos page listing the uploads from my Bilibili space, with cover, duration, play count, danmaku count and publish date, searchable by title and description; the home "Stay tuned" button became a "Watch videos" entry. Data is synced from Bilibili once a day by GitHub Actions' },
   { date: '2026-10-13', text: 'Added a "Back to articles" button at the top of post pages so you can return to the list in one click; in the rounded style, the navbar avatar is now pill-shaped too, matching the other navbar buttons' },

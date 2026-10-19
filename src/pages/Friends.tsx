@@ -18,29 +18,38 @@ const FRIENDS: Friend[] = [
   {
     name: '咡如夏 · ERX399',
     url: 'https://blog.520pro.top/',
-    urlText: 'github.com/ERX399',
-    avatar: 'https://avatars.githubusercontent.com/u/201088719?s=64&v=4',
+    urlText: 'blog.520pro.top',
+    avatar: 'https://avatars.githubusercontent.com/u/201088719?s=256&v=4',
     alt: '咡如夏的头像',
-    descZh: '来自中国，维护 14 个公开仓库',
-    descEn: 'Based in China · maintains 14 public repositories'
+    descZh: 'Protect What You Love.',
+    descEn: 'Protect What You Love.'
   },
   {
     name: 'Thinkreally · ThinkReally114',
     url: 'https://thinkreally114.github.io/website/',
-    urlText: 'github.com/ThinkReally114',
-    avatar: 'https://avatars.githubusercontent.com/u/237739976?s=64&v=4',
+    urlText: 'thinkreally114.github.io/website',
+    avatar: 'https://avatars.githubusercontent.com/u/237739976?s=256&v=4',
     alt: 'Thinkreally 的头像',
-    descZh: 'hi · 维护 8 个公开仓库',
-    descEn: 'hi · maintains 8 public repositories'
+    descZh: '探索与爱。',
+    descEn: '探索与爱。'
   },
   {
     name: 'Xiaobocm',
     url: 'https://blog.xiaobocm.com',
-    urlText: 'github.com/Xiaobocm',
-    avatar: 'https://avatars.githubusercontent.com/u/262091240?s=64&v=4',
+    urlText: 'blog.xiaobocm.com',
+    avatar: 'https://avatars.githubusercontent.com/u/262091240?s=256&v=4',
     alt: 'Xiaobocm 的头像',
-    descZh: '来自宁波、中国，维护 8 个公开仓库',
-    descEn: 'Based in Ningbo, China · maintains 8 public repositories'
+    descZh: '我们都爱着地球',
+    descEn: '我们都爱着地球'
+  },
+  {
+    name: '执着yoyo',
+    url: 'https://yoyo-coding.github.io/me/',
+    urlText: 'yoyo-coding.github.io/me',
+    avatar: 'https://github.com/yoyo-coding.png',
+    alt: '执着yoyo 的头像',
+    descZh: '',
+    descEn: ''
   }
 ];
 
@@ -119,6 +128,16 @@ export default function Friends() {
           </p>
           {search.results.map((f) => (
             <a key={f.url} className="friend-item" href={f.url} target="_blank" rel="noopener">
+              <div className="friend-info">
+                <div className="friend-name">{f.name.split(' · ')[0]}</div>
+                <div className="friend-desc" data-lang-variant="zh">
+                  {f.descZh}
+                </div>
+                <div className="friend-desc" data-lang-variant="en" lang="en">
+                  {f.descEn}
+                </div>
+                <div className="friend-url">{f.urlText}</div>
+              </div>
               <img
                 className="friend-avatar"
                 src={f.avatar}
@@ -127,14 +146,6 @@ export default function Friends() {
                 width={48}
                 height={48}
               />
-              <div className="friend-name">{f.name}</div>
-              <div className="friend-desc" data-lang-variant="zh">
-                {f.descZh}
-              </div>
-              <div className="friend-desc" data-lang-variant="en" lang="en">
-                {f.descEn}
-              </div>
-              <div className="friend-url">{f.urlText}</div>
             </a>
           ))}
         </div>
