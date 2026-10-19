@@ -981,7 +981,7 @@ html.hero-instant .home-hero h1 {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to right, var(--surface) 0%, var(--surface) 50%, transparent 150%);
+  background: linear-gradient(to right, var(--surface) 0%, var(--surface) 46%, transparent 125%);
   pointer-events: none;
 }
 
