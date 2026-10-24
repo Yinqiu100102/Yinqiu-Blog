@@ -8,6 +8,8 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-24', text: '边角样式切换加入全站过渡：圆角变量改为可插值的长度，在直角与圆角之间切换时全站圆角同步生长或收平，不再瞬间跳变；胶囊元素改用确定半径，过渡中途的形状变化更均匀；未设置过偏好的首访也直接从首帧按圆角渲染' },
+  { date: '2026-10-24', text: '修复首页头像与名字飞入顶栏时被打断会瞬移回起点的问题：反向滚动现在从当前位置平滑掉头，飞行时长按剩余距离折算，落位渐隐阶段同样可以被接管' },
   { date: '2026-10-20', text: '友链卡片改版：改为「左文字 + 右头像」布局，头像作背景铺在卡片右侧并配底色渐变保证文字可读；友链简介改为各站 slogan，展示链接与跳转地址保持一致；新增友链「执着yoyo」' },
   { date: '2026-10-17', text: '站点名称改为「白吟秋」（英文 Yinqiu），全站标题、页脚、关于页等展示同步更新' },
   { date: '2026-10-14', text: '新增视频页：展示B站主页的投稿视频，含封面、时长、播放数、弹幕数与发布日期，支持标题与简介搜索；首页「敬请期待」按钮改为「看视频」入口。数据由 GitHub Actions 每天从B站同步一次' },
@@ -82,6 +84,8 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-24', text: 'Corner-style switching now animates across the whole site: the radius variables became interpolable lengths, so every corner grows or settles in sync when switching between square and rounded instead of snapping; pill elements use a fixed radius so the shape changes evenly through the transition; first-time visitors without a stored preference now render rounded from the very first frame' },
+  { date: '2026-10-24', text: 'Fixed the home avatar and name snapping back to their starting point when the flight into the header was interrupted: scrolling back now turns around smoothly from the current position, the duration is scaled to the remaining distance, and the fade-out after landing can be taken over too' },
   { date: '2026-10-20', text: 'Friend cards were redesigned: text on the left with the avatar as a background filling the right side, plus a background gradient to keep the text readable; friend descriptions became each site\'s slogan, the shown links now match the destinations, and a new friend "执着yoyo" was added' },
   { date: '2026-10-17', text: 'Renamed the site to "白吟秋" (English: Yinqiu); titles, footer and the about page now show the new name everywhere' },
   { date: '2026-10-14', text: 'Added a Videos page listing the uploads from my Bilibili space, with cover, duration, play count, danmaku count and publish date, searchable by title and description; the home "Stay tuned" button became a "Watch videos" entry. Data is synced from Bilibili once a day by GitHub Actions' },

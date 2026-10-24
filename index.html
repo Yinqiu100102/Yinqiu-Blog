@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>白吟秋</title>
   <meta name="description" content="白吟秋的个人小站：写代码也做视频，这里放一些零零散散的想法。" />
-  <!-- 闪屏防护：在 React 挂载前先把主题与边角样式预设到 <html>，避免深色/圆角用户看到闪烁 -->
-  <script>(function(){try{var t=localStorage.getItem('hcl-theme');if(t==='light'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.setAttribute('data-theme','light')}if(localStorage.getItem('hcl-corner')==='rounded'){document.documentElement.setAttribute('data-corner','rounded')}}catch(e){}})();</script>
+  <!-- 闪屏防护：在 React 挂载前先把主题与边角样式预设到 <html>，避免深色/圆角用户看到闪烁。
+       边角判定须与 Prefs.readCorner 的默认值（rounded）一致：未存储时也预设圆角，
+       否则首访用户首帧直角、挂载后才变圆角，会多播一遍圆角过渡动画 -->
+  <script>(function(){try{var t=localStorage.getItem('hcl-theme');if(t==='light'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.setAttribute('data-theme','light')}if(localStorage.getItem('hcl-corner')!=='right'){document.documentElement.setAttribute('data-corner','rounded')}}catch(e){}})();</script>
   <link rel="icon" type="image/png" href="%BASE_URL%images/avatar.png?v=3" />
   <meta name="theme-color" content="#0e0e0e" />
 </head>

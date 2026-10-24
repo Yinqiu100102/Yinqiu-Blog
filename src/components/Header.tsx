@@ -23,12 +23,20 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
     }
     setShowBrand(false);
     type Phase = 'hidden' | 'toBrand' | 'shown' | 'toHero';
+    type ImgStyle = { border: string; radius: number; borderColor: string; cornerShape: string };
+    type NameStyle = {
+      fontFamily: string;
+      fontWeight: string;
+      color: string;
+      fontSize: string;
+      letterSpacing: string;
+    };
     type Snap = {
       imgRect: DOMRect;
       textRect: DOMRect;
       h1Rect: DOMRect;
-      imgStyle: CSSStyleDeclaration;
-      h1Style: CSSStyleDeclaration;
+      imgStyle: ImgStyle;
+      nameStyle: NameStyle;
     };
     let phase: Phase = 'hidden';
     let raf = 0;
@@ -60,12 +68,27 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
 
     /* 半径钳到半宽后取 px，与尺寸同一时长同步插值：
        全程四角曲率一致，落位值与真实元素零偏差 */
-    const radiusPx = (style: CSSStyleDeclaration, size: number) => {
-      const val = parseFloat(style.borderRadius);
-      if (Number.isNaN(val)) {
-        return '0px';
-      }
-      return `${Math.min(val, size / 2)}px`;
+    const radiusPx = (radius: number, size: number) => `${Math.min(radius, size / 2)}px`;
+
+    const readImgStyle = (el: HTMLElement): ImgStyle => {
+      const cs = getComputedStyle(el);
+      return {
+        border: cs.border,
+        radius: parseFloat(cs.borderRadius) || 0,
+        borderColor: cs.borderTopColor,
+        cornerShape: cs.getPropertyValue('corner-shape') || 'round'
+      };
+    };
+
+    const readNameStyle = (el: HTMLElement): NameStyle => {
+      const cs = getComputedStyle(el);
+      return {
+        fontFamily: cs.fontFamily,
+        fontWeight: cs.fontWeight,
+        color: cs.color,
+        fontSize: cs.fontSize,
+        letterSpacing: cs.letterSpacing
+      };
     };
 
     const captureHero = (): Snap | null => {
@@ -86,8 +109,8 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         imgRect,
         h1Rect,
         textRect,
-        imgStyle: getComputedStyle(heroImg),
-        h1Style: getComputedStyle(heroName)
+        imgStyle: readImgStyle(heroImg),
+        nameStyle: readNameStyle(heroName)
       };
     };
 
@@ -106,8 +129,8 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         imgRect: logoRect,
         h1Rect: nameRect,
         textRect: nameRect,
-        imgStyle: getComputedStyle(logo),
-        h1Style: getComputedStyle(name)
+        imgStyle: readImgStyle(logo),
+        nameStyle: readNameStyle(name)
       };
     };
 
@@ -131,10 +154,7 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
       });
       fadeTimer = window.setTimeout(() => {
         fadeTimer = 0;
-        clones.splice(0).forEach((el) => el.remove());
-        anims = [];
-        startImgKf = null;
-        startNameKf = null;
+        destroyClones();
         document.documentElement.classList.remove('hero-instant');
         setBrandInstant(false);
       }, 460);
@@ -158,25 +178,42 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
     const freezeClones = () => {
       const avatar = clones[0] as HTMLImageElement;
       const flyName = clones[1] as HTMLSpanElement;
-      const cs = getComputedStyle(avatar);
-      const csn = getComputedStyle(flyName);
+      const acs = getComputedStyle(avatar);
+      const ncs = getComputedStyle(flyName);
+      const img = {
+        left: acs.left,
+        top: acs.top,
+        width: acs.width,
+        height: acs.height,
+        borderRadius: acs.borderRadius,
+        borderColor: acs.borderTopColor,
+        cornerShape: acs.getPropertyValue('corner-shape') || 'round'
+      };
+      const name = {
+        left: ncs.left,
+        top: ncs.top,
+        fontSize: ncs.fontSize,
+        lineHeight: ncs.lineHeight,
+        letterSpacing: ncs.letterSpacing
+      };
       anims.forEach((a) => a.cancel());
       anims = [];
       avatar.style.transition = 'none';
-      avatar.style.left = cs.left;
-      avatar.style.top = cs.top;
-      avatar.style.width = cs.width;
-      avatar.style.height = cs.height;
-      avatar.style.borderRadius = cs.borderRadius;
-      avatar.style.borderColor = cs.borderTopColor;
+      avatar.style.left = img.left;
+      avatar.style.top = img.top;
+      avatar.style.width = img.width;
+      avatar.style.height = img.height;
+      avatar.style.borderRadius = img.borderRadius;
+      avatar.style.borderColor = img.borderColor;
+      avatar.style.setProperty('corner-shape', img.cornerShape);
       avatar.style.transition = 'opacity 0.12s var(--ease)';
       avatar.style.opacity = '1';
       flyName.style.transition = 'none';
-      flyName.style.left = csn.left;
-      flyName.style.top = csn.top;
-      flyName.style.fontSize = csn.fontSize;
-      flyName.style.lineHeight = csn.lineHeight;
-      flyName.style.letterSpacing = csn.letterSpacing;
+      flyName.style.left = name.left;
+      flyName.style.top = name.top;
+      flyName.style.fontSize = name.fontSize;
+      flyName.style.lineHeight = name.lineHeight;
+      flyName.style.letterSpacing = name.letterSpacing;
       flyName.style.transition = 'opacity 0.12s var(--ease)';
       flyName.style.opacity = '1';
     };
@@ -208,12 +245,12 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         avatar.alt = '';
         avatar.decoding = 'async';
         avatar.ariaHidden = 'true';
-        avatar.style.cssText = `position:fixed;margin:0;z-index:45;pointer-events:none;object-fit:cover;left:${start.imgRect.left}px;top:${start.imgRect.top}px;width:${start.imgRect.width}px;height:${start.imgRect.height}px;border:${start.imgStyle.border};border-radius:${radiusPx(start.imgStyle, start.imgRect.width)};`;
-        avatar.style.setProperty('corner-shape', start.imgStyle.getPropertyValue('corner-shape') || 'round');
+        avatar.style.cssText = `position:fixed;margin:0;z-index:45;pointer-events:none;object-fit:cover;left:${start.imgRect.left}px;top:${start.imgRect.top}px;width:${start.imgRect.width}px;height:${start.imgRect.height}px;border:${start.imgStyle.border};border-radius:${radiusPx(start.imgStyle.radius, start.imgRect.width)};`;
+        avatar.style.setProperty('corner-shape', start.imgStyle.cornerShape);
         const flyName = document.createElement('span');
         flyName.textContent = document.querySelector<HTMLElement>('.home-hero h1')?.textContent ?? '';
         flyName.ariaHidden = 'true';
-        flyName.style.cssText = `position:fixed;margin:0;z-index:45;pointer-events:none;white-space:nowrap;left:${start.textRect.left}px;top:${start.h1Rect.top}px;font-family:${start.h1Style.fontFamily};font-weight:${start.h1Style.fontWeight};color:${start.h1Style.color};font-size:${start.h1Style.fontSize};line-height:${start.h1Rect.height}px;letter-spacing:${start.h1Style.letterSpacing};`;
+        flyName.style.cssText = `position:fixed;margin:0;z-index:45;pointer-events:none;white-space:nowrap;left:${start.textRect.left}px;top:${start.h1Rect.top}px;font-family:${start.nameStyle.fontFamily};font-weight:${start.nameStyle.fontWeight};color:${start.nameStyle.color};font-size:${start.nameStyle.fontSize};line-height:${start.h1Rect.height}px;letter-spacing:${start.nameStyle.letterSpacing};`;
         document.body.append(avatar, flyName);
         clones.push(avatar, flyName);
       }
@@ -226,16 +263,16 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         top: `${target.imgRect.top}px`,
         width: `${target.imgRect.width}px`,
         height: `${target.imgRect.height}px`,
-        borderRadius: radiusPx(target.imgStyle, target.imgRect.width),
-        borderColor: target.imgStyle.borderTopColor,
-        cornerShape: target.imgStyle.getPropertyValue('corner-shape') || 'round'
+        borderRadius: radiusPx(target.imgStyle.radius, target.imgRect.width),
+        borderColor: target.imgStyle.borderColor,
+        cornerShape: target.imgStyle.cornerShape
       };
       const endName: Keyframe = {
         left: `${target.textRect.left}px`,
         top: `${target.h1Rect.top}px`,
-        fontSize: target.h1Style.fontSize,
+        fontSize: target.nameStyle.fontSize,
         lineHeight: `${target.h1Rect.height}px`,
-        letterSpacing: target.h1Style.letterSpacing
+        letterSpacing: target.nameStyle.letterSpacing
       };
       startImgKf = {
         left: avatar.style.left,
@@ -258,7 +295,11 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         setShowBrand(false);
       }
       const ease = 'cubic-bezier(0.22, 1, 0.36, 1)';
-      const dur = 500;
+      const travel = Math.hypot(
+        target.imgRect.left - parseFloat(String(startImgKf.left)),
+        target.imgRect.top - parseFloat(String(startImgKf.top))
+      );
+      const dur = Math.round(Math.min(520, Math.max(190, 190 + travel * 0.6)));
       /* 半径、描边色、corner-shape 与位置尺寸同一关键帧同步插值，
          corner-shape 为离散插值在中点切换，两端与真实元素完全一致 */
       const a1 = avatar.animate([startImgKf, endImg], { duration: dur, easing: ease, fill: 'forwards' });
@@ -269,9 +310,6 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
           if (phase !== dir) {
             return;
           }
-          anims = [];
-          startImgKf = null;
-          startNameKf = null;
           if (dir === 'toBrand') {
             phase = 'shown';
             showBrandInstant();
@@ -306,9 +344,9 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
           top: `${target.imgRect.top}px`,
           width: `${target.imgRect.width}px`,
           height: `${target.imgRect.height}px`,
-          borderRadius: radiusPx(target.imgStyle, target.imgRect.width),
-          borderColor: target.imgStyle.borderTopColor,
-          cornerShape: target.imgStyle.getPropertyValue('corner-shape') || 'round'
+          borderRadius: radiusPx(target.imgStyle.radius, target.imgRect.width),
+          borderColor: target.imgStyle.borderColor,
+          cornerShape: target.imgStyle.cornerShape
         }
       ]);
       eff2.setKeyframes([
@@ -316,9 +354,9 @@ export function Header({ onOpenMenu }: { onOpenMenu: () => void }) {
         {
           left: `${target.textRect.left}px`,
           top: `${target.h1Rect.top}px`,
-          fontSize: target.h1Style.fontSize,
+          fontSize: target.nameStyle.fontSize,
           lineHeight: `${target.h1Rect.height}px`,
-          letterSpacing: target.h1Style.letterSpacing
+          letterSpacing: target.nameStyle.letterSpacing
         }
       ]);
     };

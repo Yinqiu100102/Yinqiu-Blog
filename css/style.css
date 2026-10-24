@@ -17,6 +17,22 @@ img {
 }
 
 /* ============ 主题变量（默认深色） ============ */
+/* 把圆角变量注册为可插值的 <length>：未注册的自定义属性是原样字符串，
+   浏览器无法在两个值之间算中间值，切换边角样式时只会瞬间跳变；
+   注册后 :root 上的 transition（见文末边角样式区块）才能驱动全站圆角
+   平滑过渡。initial-value 与直角默认一致，inherits 必须为 true 以维持
+   变量沿文档树继承的原有语义 */
+@property --r-xs { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-sm { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-md { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-lg { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-xl { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-btn-sm { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-btn { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-btn-lg { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-pill { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --r-nav { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
 :root {
   color-scheme: dark;
 
@@ -55,16 +71,20 @@ img {
   --scroll-thumb-hover: rgba(255, 255, 255, 0.26);
 
   /* 圆角梯度：默认（直角风格）全部置零，全站直角。
-     圆角风格由文末 :root[data-corner="rounded"] 覆写为小圆角 */
-  --r-xs: 0;
-  --r-sm: 0;
-  --r-md: 0;
-  --r-lg: 0;
-  --r-xl: 0;
-  --r-btn-sm: 0;
-  --r-btn: 0;
-  --r-btn-lg: 0;
-  --r-pill: 0;
+     圆角风格由文末 :root[data-corner="rounded"] 覆写为小圆角。
+     必须带单位：这些变量已在文首用 @property 注册为 <length>，
+     无单位的 0 不再是合法值 */
+  --r-xs: 0px;
+  --r-sm: 0px;
+  --r-md: 0px;
+  --r-lg: 0px;
+  --r-xl: 0px;
+  --r-btn-sm: 0px;
+  --r-btn: 0px;
+  --r-btn-lg: 0px;
+  --r-pill: 0px;
+  /* 顶栏按钮与头像的独立圆角：直角态 0，圆角态改为胶囊（见文末） */
+  --r-nav: 0px;
 
   --max-width: 1024px;
   --max-wide: 1024px;
@@ -74,6 +94,11 @@ img {
 
   /* 澎湃 OS 的动效曲线：快速起步、柔和收尾 */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* 圆角「收平」方向专用。ease-out 在收平时前几十毫秒就跑完大半行程，
+     观感等于瞬跳；而纯 ease-in（控制点 y 全为 0 时进度是时间的三次方）
+     前一半时间几乎纹丝不动，观感像延迟了才开动。取对称的 ease-in-out：
+     起步、中段、收尾都有均匀可见的形状变化 */
+  --ease-settle: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 :root[data-theme="light"] {
@@ -941,7 +966,7 @@ html.hero-instant .home-hero h1 {
   display: flex;
   padding: 18px;
   border: 1px solid transparent;
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   background: var(--surface);
   color: inherit;
   text-decoration: none;
@@ -1150,7 +1175,7 @@ html::before {
   width: 32px;
   height: 32px;
   object-fit: cover;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-nav);
   background: var(--bg-soft);
   border: 1px solid var(--border);
 }
@@ -1186,7 +1211,7 @@ html::before {
   align-items: center;
   padding: 6px 13px;
   border: 1px solid transparent;
-  border-radius: var(--r-btn-sm);
+  border-radius: var(--r-nav);
   line-height: 1.4;
   color: var(--text-secondary);
   font-size: 0.92rem;
@@ -1218,7 +1243,7 @@ html::before {
   gap: 5px;
   padding: 6px 13px;
   border: 1px solid transparent;
-  border-radius: var(--r-btn-sm);
+  border-radius: var(--r-nav);
   background-color: transparent;
   color: var(--text-secondary);
   font-family: inherit;
@@ -1306,7 +1331,7 @@ html::before {
   width: 36px;
   height: 36px;
   border: 1px solid transparent;
-  border-radius: var(--r-btn-sm);
+  border-radius: var(--r-nav);
   /* button 元素有 UA 默认底色，必须显式清掉 */
   background-color: transparent;
   color: var(--text-secondary);
@@ -1418,7 +1443,7 @@ body.nav-open {
   width: 36px;
   height: 36px;
   border: 1px solid transparent;
-  border-radius: var(--r-btn-sm);
+  border-radius: var(--r-nav);
   /* button 元素有 UA 默认底色，必须显式清掉 */
   background-color: transparent;
   color: var(--text-secondary);
@@ -1561,7 +1586,7 @@ body.nav-open {
   margin-bottom: 0;
   background: var(--surface);
   border: 1px solid transparent;
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   /* 裁掉封面图的直角，使缩略图贴合卡片的圆角（直角风格下无副作用） */
   overflow: hidden;
   cursor: pointer;
@@ -1842,6 +1867,7 @@ body.nav-open {
   min-width: 42px;
   padding: 8px 14px;
   cursor: pointer;
+  border-radius: var(--r-btn-sm);
   transition: outline-color 0.18s var(--ease), background-color 0.18s var(--ease), color 0.18s var(--ease);
 }
 
@@ -1861,10 +1887,6 @@ body.nav-open {
 .pager button:disabled {
   opacity: 0.4;
   cursor: default;
-}
-
-:root[data-corner="rounded"] .pager button {
-  border-radius: var(--r-btn-sm);
 }
 
 .video-length {
@@ -2891,14 +2913,38 @@ body.lb-lock {
 }
 
 /* ============ 边角样式（设置页可切换） ============ */
-/* 直角风格（默认）：--r-* 全为 0（见 :root），全站直角。
-   圆角风格：写回克制的「小圆角」；无描边、无阴影的静态面（板块、侧卡、
-   文章图块等）由 src/squircle.ts 用 figma-squircle 生成苹果同款 G2 连续
-   曲线（切点处曲率为 0），以 clip-path 裁出；带描边/悬停高亮/阴影/毛玻璃
-   的元素（按钮、卡片、导航、浮层）保持原生圆角 —— 描边沿原生圆弧绘制，
-   厚度均匀且无 JS 参与，曲线与圆弧混排即 iOS 界面的实际做法。
-   胶囊元素（四角半径 ≥ 短边一半）由引擎自动跳过，保持正圆端头。 */
+/* 直角风格（默认）：--r-* 全为 0px（见 :root），全站直角。
+   圆角风格：写回克制的「小圆角」；带描边/悬停高亮/阴影/毛玻璃的元素
+   （按钮、卡片、导航、浮层）同为原生圆角 —— 描边沿圆弧绘制，厚度均匀。
+
+   切换动画：过渡声明在 :root 上，data-corner 变化时变量先在根上插值，
+   全站元素继承到的都是动画中的中间值，于是所有圆角同步「生长/收平」；
+   各元素自身无需任何 transition。变量注册见文首 @property 区块。
+
+   前提：所有用到 --r-* 的声明必须是常驻的基础规则，不能写成
+   :root[data-corner="rounded"] .foo 这种只在圆角态存在的选择器。
+   否则切换时整条声明被增删，浏览器走的是「属性从无到有」，直接跳变，
+   变量插值根本没机会生效。圆角态的差异只体现在变量取值上。
+
+   --r-pill 取 24px 而非 999px：所有胶囊元素（48px 搜索框、标签、
+   滚动条滑块）在 24px 时四角半径都已不小于短边一半，渲染出来就是
+   正圆端头；而 999px 要插值到接近 0 才跌破短边一半才开始「变方」，
+   观感上一直是胶囊、最后一瞬突变。24px 让形状变化均匀铺开。
+
+   曲线按方向分开：过渡参数取「变化后停留状态」上的声明 ——
+   停在直角态（此块）时即将播的是「圆角 → 直角」，用对称的
+   --ease-settle 让收平全程可见；停在圆角态（下方 rounded 块）时即将播
+   「直角 → 圆角」，用原 --ease 的快速起步 + 柔和定型。 */
+html {
+  transition-property: --r-xs, --r-sm, --r-md, --r-lg, --r-xl,
+    --r-btn-sm, --r-btn, --r-btn-lg, --r-pill, --r-nav;
+  transition-duration: 0.25s;
+  transition-timing-function: var(--ease-settle);
+}
+
 :root[data-corner="rounded"] {
+  /* 停在圆角态：即将播的是「直角 → 圆角」，用原曲线快速长出、柔和定型 */
+  transition-timing-function: var(--ease);
   --r-xs: 6px;
   --r-sm: 8px;
   --r-md: 12px;
@@ -2907,39 +2953,12 @@ body.lb-lock {
   --r-btn-sm: 6px;
   --r-btn: 8px;
   --r-btn-lg: 10px;
-  /* 搜索框、标签、滚动条保持胶囊全圆角 */
-  --r-pill: 999px;
-}
-
-/* 嵌套卡片：板块是外层，里面的卡片圆角要比板块小一级，拉开层次 */
-:root[data-corner="rounded"] .panel .post-item,
-:root[data-corner="rounded"] .panel .friend-item {
-  border-radius: var(--r-md);
-}
-
-/* 导航栏按钮：圆角模式下统一改成胶囊形。
-   一级链接用子选择器命中，避免波及「更多」下拉里的选项；
-   头像（.brand-logo）与按钮同排，也随胶囊走（方形头像即正圆） */
-:root[data-corner="rounded"] .brand-logo,
-:root[data-corner="rounded"] .nav-links > a,
-:root[data-corner="rounded"] .nav-more-toggle,
-:root[data-corner="rounded"] .theme-toggle,
-:root[data-corner="rounded"] .menu-toggle {
-  border-radius: var(--r-pill);
-}
-
-/* 分段控件：外层与首尾项补上圆角，避免选中项的方角底色溢出；
-   不用 overflow: hidden，以免裁掉键盘聚焦时的外框 */
-:root[data-corner="rounded"] .segmented {
-  border-radius: var(--r-md);
-}
-
-:root[data-corner="rounded"] .segment:first-child {
-  border-radius: var(--r-md) 0 0 var(--r-md);
-}
-
-:root[data-corner="rounded"] .segment:last-child {
-  border-radius: 0 var(--r-md) var(--r-md) 0;
+  /* 搜索框、标签、滚动条：圆角态为正圆端头的胶囊 */
+  --r-pill: 24px;
+  /* 顶栏头像与按钮：圆角态改为胶囊。按钮高 36px 且头像 32px，
+     20px 已不小于短边一半、渲染即正圆端头；取整数值而非 999px，
+     是为了让过渡中途的形状变化均匀可见（同 --r-pill） */
+  --r-nav: 20px;
 }
 
 /* 设置页 */
@@ -2963,6 +2982,7 @@ body.lb-lock {
 .segmented {
   display: inline-flex;
   border: 1px solid var(--border);
+  border-radius: var(--r-md);
 }
 
 .segment {
@@ -2979,8 +2999,13 @@ body.lb-lock {
   transition: background-color 0.18s var(--ease), color 0.18s var(--ease), box-shadow 0.18s var(--ease);
 }
 
+.segment:first-child {
+  border-radius: var(--r-md) 0 0 var(--r-md);
+}
+
 .segment:last-child {
   border-right: 0;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
 }
 
 /* 分段控件是拼接结构：用 inset 描边（内阴影）做高亮，既不填底色，
