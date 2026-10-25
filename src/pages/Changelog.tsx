@@ -8,6 +8,7 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-24', text: '视频页改版：卡片只保留封面、标题、简介与发布日期，日期移到标题上方左侧，简介显示在标题下方（最多三行，超长悬停可看全文）；发布日期的时钟图标与文字做光学对齐，修正在 125% 缩放屏上图标偏低的问题；数据抓取重写为搭空间页自身请求的便车（滚动加载时拦截响应），不再调用需要 wbi 签名的接口，绕开了连续多日失败的B站风控' },
   { date: '2026-10-24', text: '边角样式切换加入全站过渡：圆角变量改为可插值的长度，在直角与圆角之间切换时全站圆角同步生长或收平，不再瞬间跳变；胶囊元素改用确定半径，过渡中途的形状变化更均匀；未设置过偏好的首访也直接从首帧按圆角渲染' },
   { date: '2026-10-24', text: '修复首页头像与名字飞入顶栏时被打断会瞬移回起点的问题：反向滚动现在从当前位置平滑掉头，飞行时长按剩余距离折算，落位渐隐阶段同样可以被接管' },
   { date: '2026-10-20', text: '友链卡片改版：改为「左文字 + 右头像」布局，头像作背景铺在卡片右侧并配底色渐变保证文字可读；友链简介改为各站 slogan，展示链接与跳转地址保持一致；新增友链「执着yoyo」' },
@@ -84,6 +85,7 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-24', text: 'The Videos page was reworked: cards now show only the cover, title, description and publish date, with the date above the title on the left and the description below it (clamped to three lines, full text on hover); the clock icon next to the publish date is now optically aligned with the text, fixing it sitting too low on 125%-scaled displays; the fetcher was rewritten to piggyback on the space page\'s own requests (intercepting responses while scrolling) instead of calling the wbi-signed API, working around Bilibili\'s risk control that had been failing for days' },
   { date: '2026-10-24', text: 'Corner-style switching now animates across the whole site: the radius variables became interpolable lengths, so every corner grows or settles in sync when switching between square and rounded instead of snapping; pill elements use a fixed radius so the shape changes evenly through the transition; first-time visitors without a stored preference now render rounded from the very first frame' },
   { date: '2026-10-24', text: 'Fixed the home avatar and name snapping back to their starting point when the flight into the header was interrupted: scrolling back now turns around smoothly from the current position, the duration is scaled to the remaining distance, and the fade-out after landing can be taken over too' },
   { date: '2026-10-20', text: 'Friend cards were redesigned: text on the left with the avatar as a background filling the right side, plus a background gradient to keep the text readable; friend descriptions became each site\'s slogan, the shown links now match the destinations, and a new friend "执着yoyo" was added' },

@@ -1,15 +1,19 @@
 {
   "ok": true,
-  "updatedAt": "2026-10-17T00:07:59.458Z",
+  "updatedAt": "2026-10-25T14:32:47.134Z",
   "mid": "1937945301",
   "videos": [
+    {
+      "bvid": "BV1bjHN6pERY",
+      "title": "基岩版血条闪烁不正常的bug被修复了？！原来这不是特性吗？",
+      "pic": "https://i2.hdslb.com/bfs/archive/c607861e3f62a42d8844fd77f2fa2543e1ee5a6c.jpg",
+      "created": 1792821729,
+      "desc": "陪了我10年的特性说下架就下架😡😡（"
+    },
     {
       "bvid": "BV1cU346yEUJ",
       "title": "MC两个版本有多少不同的细节（3）",
       "pic": "https://i1.hdslb.com/bfs/archive/7dfdefd21f0ce152f8ad410270b2fee3550247ae.jpg",
-      "length": "02:42",
-      "play": 3882,
-      "danmaku": 112,
       "created": 1785401876,
       "desc": "没人看吗？"
     },
@@ -17,9 +21,6 @@
       "bvid": "BV1TSgf63EPX",
       "title": "MC两个版本有多少不同的细节（2）",
       "pic": "https://i0.hdslb.com/bfs/archive/7d3bf6dc666632cf02663f2ccdf2afae58203e54.jpg",
-      "length": "02:03",
-      "play": 2392,
-      "danmaku": 108,
       "created": 1785147842,
       "desc": "上期流量还真的挺不错的，不知道会不会有第三期呢"
     },
@@ -27,9 +28,6 @@
       "bvid": "BV19Ggx6xE2x",
       "title": "MC两个版本有多少不同的细节（1）",
       "pic": "https://i2.hdslb.com/bfs/archive/70decd064eae9e5fc4681256bf4a505e1ff2dee8.jpg",
-      "length": "02:25",
-      "play": 13767,
-      "danmaku": 128,
       "created": 1784823117,
       "desc": "其实24年的时候就想做了，封面也是那年做的，一直拖到了今年才开工[手动哭笑]"
     },
@@ -37,9 +35,6 @@
       "bvid": "BV1iGN76dEgx",
       "title": "当库克更新了MC液态玻璃（",
       "pic": "https://i1.hdslb.com/bfs/archive/c9d1912fe3445c20484a2c3d983afd88d870a23b.jpg",
-      "length": "00:57",
-      "play": 20674,
-      "danmaku": 143,
       "created": 1783646994,
       "desc": "模组名称：reglass\n下载链接：https://modrinth.com/mod/reglass"
     },
@@ -47,9 +42,6 @@
       "bvid": "BV1SaTp6NExh",
       "title": "当群主为服务器做了一个宣传be like",
       "pic": "https://i1.hdslb.com/bfs/archive/dbdf0c41c2c5f476ec58e6d91e57db52d150cf10.jpg",
-      "length": "01:17",
-      "play": 400,
-      "danmaku": 1,
       "created": 1783053743,
       "desc": "看评论置顶！看评论置顶！\n因嗓子不舒服导致没配音（bushi"
     },
@@ -57,9 +49,6 @@
       "bvid": "BV1krQABkELg",
       "title": "Vulkan帧率暴涨？麻将有待优化！",
       "pic": "https://i2.hdslb.com/bfs/archive/b71b31ea79d4220142bb6eb72bfef683d2e59f71.jpg",
-      "length": "01:31",
-      "play": 1056,
-      "danmaku": 0,
       "created": 1775839287,
       "desc": "不知道是N卡录制的问题还是啥，录出来的视频一卡一卡的，录的时候明明很流畅"
     },
@@ -67,9 +56,6 @@
       "bvid": "BV1eJZ9BHEEt",
       "title": "【创游世界 Ci OS】自制伪系统发展史#2",
       "pic": "https://i0.hdslb.com/bfs/archive/cc0f1788395683b04c2f3440e318299db71469fb.jpg",
-      "length": "06:05",
-      "play": 1459,
-      "danmaku": 3,
       "created": 1771409341,
       "desc": "-"
     },
@@ -77,9 +63,6 @@
       "bvid": "BV11RZEB6ENC",
       "title": "【创游世界 Ci OS】添加更多图标",
       "pic": "https://i2.hdslb.com/bfs/archive/09d03e4d6def7a0659db07289999958fb6516da3.jpg",
-      "length": "01:01",
-      "play": 1485,
-      "danmaku": 22,
       "created": 1771117200,
       "desc": "-"
     },
@@ -87,9 +70,6 @@
       "bvid": "BV1efFRzhEWh",
       "title": "【创游世界 Ci OS】自开学6个月后，我重新更新了它",
       "pic": "https://i2.hdslb.com/bfs/archive/19c30416ad499432149a10ca806109e5926063e6.jpg",
-      "length": "00:44",
-      "play": 1508,
-      "danmaku": 21,
       "created": 1770781500,
       "desc": "这次并没有加入什么新的功能，而是对界面以及动画的细致打磨"
     },
@@ -97,9 +77,6 @@
       "bvid": "BV1ibFQzsEaa",
       "title": "我姐说她是老玩家，于是我让她玩MC",
       "pic": "https://i1.hdslb.com/bfs/archive/f8484aa0cc577116a3ba3120cf8af9f7d246b36d.jpg",
-      "length": "07:55",
-      "play": 330224,
-      "danmaku": 407,
       "created": 1770723611,
       "desc": "刚刚进房间准备玩MC，结果我姐跑来说她要试一下，她说自己是十年老玩家，于是我就又素材了"
     },
@@ -107,9 +84,6 @@
       "bvid": "BV1D4htz4E55",
       "title": "这真的是创游自制的！",
       "pic": "https://i1.hdslb.com/bfs/archive/e0c63e9ea5d9c60a5934be25b6ddd455cf388d6f.jpg",
-      "length": "00:41",
-      "play": 4889,
-      "danmaku": 134,
       "created": 1754118941,
       "desc": "-"
     },
@@ -117,9 +91,6 @@
       "bvid": "BV1Yr8uz3ETm",
       "title": "【创游世界Ci OS】我重新制作了CiOS 2.0",
       "pic": "https://i1.hdslb.com/bfs/archive/1c3a8f7f9a0aedf20e69e96f57872ea04ed5d612.jpg",
-      "length": "00:56",
-      "play": 2693,
-      "danmaku": 115,
       "created": 1753337512,
       "desc": "-"
     },
@@ -127,9 +98,6 @@
       "bvid": "BV1h3gWzbEF4",
       "title": "如果你觉得你的自制系统好你就跳舞",
       "pic": "https://i0.hdslb.com/bfs/archive/e50eece9e2c368826d115408553585c48cca9911.jpg",
-      "length": "00:42",
-      "play": 3551,
-      "danmaku": 97,
       "created": 1753192122,
       "desc": "-"
     },
@@ -137,9 +105,6 @@
       "bvid": "BV1Q2gHzoEpW",
       "title": "这啥系统啊？真难猜",
       "pic": "https://i2.hdslb.com/bfs/archive/379b01673b0a760b411d0d0903b6a6ebf458c787.jpg",
-      "length": "00:54",
-      "play": 33717,
-      "danmaku": 4,
       "created": 1753176673,
       "desc": "-"
     },
@@ -147,9 +112,6 @@
       "bvid": "BV1D7KWzSEKY",
       "title": "这一刻...谁知道我等了多久😭",
       "pic": "https://i1.hdslb.com/bfs/archive/baba971bdf3a4de6cc1a3fa44667c9474e8f5339.jpg",
-      "length": "02:38",
-      "play": 37774,
-      "danmaku": 67,
       "created": 1750599566,
       "desc": "简介逆天"
     },
@@ -157,9 +119,6 @@
       "bvid": "BV1Zp7KzkEty",
       "title": "服务器进展！主城已有雏形",
       "pic": "https://i2.hdslb.com/bfs/archive/625787c34cf79ab97638be3dc7e7c929be356309.jpg",
-      "length": "12:27",
-      "play": 906,
-      "danmaku": 1,
       "created": 1748736000,
       "desc": "如果评论区没有群号，可能up因为设置了定时发布，但那个时间点可能还在睡觉吧\n\n这边直接放简介：771976804"
     },
@@ -167,9 +126,6 @@
       "bvid": "BV1o17jzqEsr",
       "title": "你应该...知道Ci OS吧？",
       "pic": "https://i0.hdslb.com/bfs/archive/3a41052a82cee46ae0200bd1bfd04f0693ecebe6.jpg",
-      "length": "00:59",
-      "play": 4347,
-      "danmaku": 102,
       "created": 1748534864,
       "desc": "-"
     },
@@ -177,9 +133,6 @@
       "bvid": "BV14Co8YLEcB",
       "title": "Ci OS(伪)系统1.0宣传片，基于创游世界自制",
       "pic": "https://i1.hdslb.com/bfs/archive/e6c4654879117452ce81d191f17635cbb8bd2a57.jpg",
-      "length": "02:00",
-      "play": 4336,
-      "danmaku": 3,
       "created": 1742917595,
       "desc": "视频内音乐源自Origin OS 3宣传片音频"
     },
@@ -187,9 +140,6 @@
       "bvid": "BV1proqYfEZY",
       "title": "创游的梦该醒了...",
       "pic": "https://i0.hdslb.com/bfs/archive/bcef704d6ab873ff925ae537bdb249f269359037.jpg",
-      "length": "00:18",
-      "play": 62652,
-      "danmaku": 575,
       "created": 1742749361,
       "desc": "-"
     },
@@ -197,9 +147,6 @@
       "bvid": "BV13bXxYeE6d",
       "title": "每个创游系统作者的痛",
       "pic": "https://i2.hdslb.com/bfs/archive/268be7e4a0166b35f21ef5434cb66ff782302904.jpg",
-      "length": "00:23",
-      "play": 10501,
-      "danmaku": 0,
       "created": 1742656945,
       "desc": "-"
     },
@@ -207,9 +154,6 @@
       "bvid": "BV15HPTe2ExP",
       "title": "[创游世界Ci OS] 大更新！！新内容！新改动！",
       "pic": "https://i2.hdslb.com/bfs/archive/098a2fc5df9c82053fb247d6de356fe3abd0b9fd.jpg",
-      "length": "02:25",
-      "play": 12710,
-      "danmaku": 2,
       "created": 1740222135,
       "desc": "-"
     },
@@ -217,9 +161,6 @@
       "bvid": "BV1ShNVeoEXw",
       "title": "创游世界距离现象，当突破64位整数时游戏直接崩溃",
       "pic": "https://i2.hdslb.com/bfs/archive/bdffb6e960c055df9786d15e30dfc434823579be.jpg",
-      "length": "04:54",
-      "play": 15246,
-      "danmaku": 40,
       "created": 1739021661,
       "desc": "-"
     },
@@ -227,9 +168,6 @@
       "bvid": "BV19aN7ekEMn",
       "title": "创游世界也有距离现象？",
       "pic": "https://i2.hdslb.com/bfs/archive/90452fb71d5e42953bfdd7ac4664dc50340a6403.jpg",
-      "length": "03:22",
-      "play": 82322,
-      "danmaku": 154,
       "created": 1738814436,
       "desc": "-"
     },
@@ -237,9 +175,6 @@
       "bvid": "BV11gFaexE9c",
       "title": "不就触控优先级吗？我们Ci OS也要有😡",
       "pic": "https://i2.hdslb.com/bfs/archive/532c2dcec89dd60e4757368c8cb436f640f36c18.jpg",
-      "length": "00:24",
-      "play": 19143,
-      "danmaku": 7,
       "created": 1738145739,
       "desc": "-"
     },
@@ -247,9 +182,6 @@
       "bvid": "BV1ttwweJESe",
       "title": "[创游世界Ci OS]三种动画样式",
       "pic": "https://i2.hdslb.com/bfs/archive/db04b0d83dadf934bfe925f584b5c2ccb8f2e9eb.jpg",
-      "length": "01:40",
-      "play": 4509,
-      "danmaku": 2,
       "created": 1737168268,
       "desc": "-"
     },
@@ -257,9 +189,6 @@
       "bvid": "BV1G3wEeKEHw",
       "title": "创游近期更新的各大系统动画对比",
       "pic": "https://i1.hdslb.com/bfs/archive/7ca13a7a664aa419a6d52259b9ed02ceeffae282.jpg",
-      "length": "01:11",
-      "play": 12541,
-      "danmaku": 15,
       "created": 1737080432,
       "desc": "-"
     },
@@ -267,9 +196,6 @@
       "bvid": "BV11fcheoEBC",
       "title": "我在创游世界中的系统发展史",
       "pic": "https://i0.hdslb.com/bfs/archive/ffa962281a8874459d94151c63a25028864e8247.jpg",
-      "length": "07:18",
-      "play": 13063,
-      "danmaku": 23,
       "created": 1736873504,
       "desc": "-"
     },
@@ -277,9 +203,6 @@
       "bvid": "BV1mPcPeSEJh",
       "title": "哦天哪，这可太像了😋",
       "pic": "https://i1.hdslb.com/bfs/archive/33d2b4ed1a1ec610cfe7be7f67472737d55e37a2.jpg",
-      "length": "00:59",
-      "play": 19073,
-      "danmaku": 5,
       "created": 1736619600,
       "desc": "-"
     },
@@ -287,9 +210,6 @@
       "bvid": "BV1mv1WYKEb6",
       "title": "用Alight Motion制作的过渡动画",
       "pic": "https://i1.hdslb.com/bfs/archive/eba6fcf5315ab27f8c98ccb7fdbcb275a11ee187.jpg",
-      "length": "00:08",
-      "play": 6334,
-      "danmaku": 0,
       "created": 1729937385,
       "desc": "-"
     },
@@ -297,9 +217,6 @@
       "bvid": "BV14U1DYGEKz",
       "title": "使用FCL的Tinywrapper渲染器游玩24w40a",
       "pic": "https://i1.hdslb.com/bfs/archive/d60e28127ac7d061293aa157ccaff079d8530c2c.jpg",
-      "length": "05:49",
-      "play": 1524,
-      "danmaku": 0,
       "created": 1728101262,
       "desc": "视频机型:vivo Y71t\n处理器配置:天机810 八核\n手机分辨率:1080*1920(16:9)\n分辨率是经过修改的，原分辨率为1080*2400"
     },
@@ -307,9 +224,6 @@
       "bvid": "BV1xYWPegEDY",
       "title": "24w33a: 勇敢去做",
       "pic": "https://i2.hdslb.com/bfs/archive/56c11fcbf7efe9153f340cbab61f0f2dd4281cda.jpg",
-      "length": "00:30",
-      "play": 3687,
-      "danmaku": 3,
       "created": 1723965715,
       "desc": "-"
     },
@@ -317,9 +231,6 @@
       "bvid": "BV1KH4y1c7nD",
       "title": "[创游世界]iOS+澎湃+鸿蒙双层图标",
       "pic": "https://i0.hdslb.com/bfs/archive/203065d85926daef5852291192be7f3e2b0747ae.jpg",
-      "length": "01:31",
-      "play": 5272,
-      "danmaku": 9,
       "created": 1721907567,
       "desc": "-"
     },
@@ -327,9 +238,6 @@
       "bvid": "BV1x1421t75X",
       "title": "Ci OS ≈ iOS ( ？)",
       "pic": "https://i1.hdslb.com/bfs/archive/ef59f4194fbf6ac0d51f28ff9bdb7ba9c718b7dd.png",
-      "length": "00:49",
-      "play": 7790,
-      "danmaku": 2,
       "created": 1721578678,
       "desc": "-"
     },
@@ -337,9 +245,6 @@
       "bvid": "BV1vi421Y7nU",
       "title": "这是创游世界目前最好的系统作品了",
       "pic": "https://i1.hdslb.com/bfs/archive/7bae80fb38c0ee1d420f6ea6d488f9e6373c579a.png",
-      "length": "00:33",
-      "play": 6647,
-      "danmaku": 5,
       "created": 1720716027,
       "desc": "-"
     },
@@ -347,9 +252,6 @@
       "bvid": "BV1G7421T7eg",
       "title": "手机基岩版速通“还是PVP大佬の地图”",
       "pic": "https://i2.hdslb.com/bfs/archive/0220dd69ccaad016d1c03248651554dcd13a3c22.jpg",
-      "length": "00:54",
-      "play": 369,
-      "danmaku": 2,
       "created": 1706688523,
       "desc": "-"
     },
@@ -357,9 +259,6 @@
       "bvid": "BV1uT4y1p76z",
       "title": "来自各大创游up的新年祝福！",
       "pic": "https://i0.hdslb.com/bfs/archive/5e6807f3e313026b96edf41544520825869199fc.jpg",
-      "length": "00:48",
-      "play": 2365,
-      "danmaku": 69,
       "created": 1704590738,
       "desc": "https://b23.tv/W5tkuzu\n联动参与者:@村夫Mcm @RG-RhythmGames @黄昏晨光 @创游地狱眼 @屑vandoor @灭世的神 @梦想成为大作者 祝大家新年快乐！"
     }

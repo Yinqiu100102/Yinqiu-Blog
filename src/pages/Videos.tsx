@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { usePrefs, useT } from '../context/Prefs';
+import { useT } from '../context/Prefs';
 import { useSearch } from '../hooks/useSearch';
 import { fetchBiliVideos, type BiliVideo } from '../lib/bili';
 import { VideoItem } from '../components/VideoCard';
@@ -7,35 +7,26 @@ import { VideoItem } from '../components/VideoCard';
 /* 搜索范围：标题 + 简介 */
 const videoSearchText = (v: BiliVideo) => `${v.title} ${v.desc}`;
 
-type SortKey = 'date' | 'hot';
-
 /* 前端分页：数据已全量下发，这里只做展示切片 */
 const PAGE_SIZE = 12;
 
 export default function Videos() {
   const t = useT();
-  const { lang } = usePrefs();
   const [videos, setVideos] = useState<BiliVideo[] | null>(null);
   const [failed, setFailed] = useState(false);
-  const [sort, setSort] = useState<SortKey>('date');
   const [page, setPage] = useState(1);
   const search = useSearch(videos ?? [], videoSearchText);
 
-  /* 先搜索过滤，再按当前排序重排：时间为新→旧，热度为播放多→少 */
-  const shown = useMemo(() => {
-    const list = [...search.results];
-    if (sort === 'hot') {
-      list.sort((a, b) => b.play - a.play);
-    } else {
-      list.sort((a, b) => b.created - a.created);
-    }
-    return list;
-  }, [search.results, sort]);
+  /* 先搜索过滤，再按发布时间新→旧重排 */
+  const shown = useMemo(
+    () => [...search.results].sort((a, b) => b.created - a.created),
+    [search.results]
+  );
 
-  /* 搜索或排序变化时回到第一页 */
+  /* 搜索变化时回到第一页 */
   useEffect(() => {
     setPage(1);
-  }, [search.value, sort]);
+  }, [search.value]);
 
   const totalPages = Math.max(1, Math.ceil(shown.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -46,7 +37,7 @@ export default function Videos() {
 
   const goto = (target: number) => {
     setPage(Math.min(Math.max(1, target), totalPages));
-    document.querySelector('.video-toolbar')?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.search-input')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -104,27 +95,6 @@ export default function Videos() {
                 onCompositionStart={search.onCompositionStart}
                 onCompositionEnd={search.onCompositionEnd}
               />
-
-              <div className="video-toolbar">
-                <div className="segmented" role="group" aria-label={t('排序方式')}>
-                  {(
-                    [
-                      ['date', lang === 'en' ? 'Latest' : '最新发布'],
-                      ['hot', lang === 'en' ? 'Most viewed' : '最多播放']
-                    ] as Array<[SortKey, string]>
-                  ).map(([key, label]) => (
-                    <button
-                      key={key}
-                      type="button"
-                      className={`segment${sort === key ? ' is-active' : ''}`}
-                      aria-pressed={sort === key}
-                      onClick={() => setSort(key)}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               <div className="panel-list-inner">
                 <p className="no-result" hidden={search.hasResults}>

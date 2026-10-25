@@ -1662,6 +1662,8 @@ body.nav-open {
 .post-tags-row .date .icon-clock {
   width: 12px;
   height: 12px;
+  flex-shrink: 0;
+  transform: translateY(0.75px);
 }
 
 /* 浏览数：与日期同一视觉层级的低调计数 */
@@ -1784,6 +1786,19 @@ body.nav-open {
   position: relative;
 }
 
+/* 视频卡片：日期单独占行时靠左排，与文章卡片的"标签+日期"布局区分 */
+.video-item .post-tags-row .date {
+  margin-left: 0;
+}
+
+/* 视频简介：最多三行，超出截断，完整内容悬停 title 可见 */
+.video-item .post-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 /* 首页"显示更多"卡片：整卡盖模糊浮层，中央提示跳转视频页 */
 .video-more {
   position: relative;
@@ -1794,11 +1809,6 @@ body.nav-open {
   filter: blur(5px);
   user-select: none;
   pointer-events: none;
-}
-
-/* 封面右下角的时长角标在文字区外，需要单独模糊 */
-.video-more .video-length {
-  filter: blur(5px);
 }
 
 .video-more-thumb {
@@ -1833,17 +1843,6 @@ body.nav-open {
 
 .video-more:hover .video-more-arrow {
   transform: translateX(4px);
-}
-
-/* 视频页工具行：排序分段控件与搜索框之间留白 */
-.video-toolbar {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 12px;
-}
-
-.video-toolbar .segmented {
-  width: fit-content;
 }
 
 /* 视频列表底部翻页：独立描边按钮组，当前页 2px 描边高亮 */
@@ -1887,21 +1886,6 @@ body.nav-open {
 .pager button:disabled {
   opacity: 0.4;
   cursor: default;
-}
-
-.video-length {
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
-  padding: 2px 8px;
-  background: rgba(0, 0, 0, 0.72);
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 500;
-  line-height: 1.5;
-  font-variant-numeric: tabular-nums;
-  border-radius: var(--r-xs);
-  pointer-events: none;
 }
 
 /* 文字区：封面下方，普通流式布局，内边距提供呼吸空间 */
