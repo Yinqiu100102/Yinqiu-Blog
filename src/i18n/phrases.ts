@@ -38,7 +38,6 @@ export const ZH_TO_EN: Record<string, string> = {
   '知道了': 'Got it',
   /* 首页 */
   '你好，这里是白吟秋': 'Hi, this is Yinqiu',
-  '在这里能看到我的想法': 'This is where you can see my thoughts',
   '个人博客': 'Personal blog',
   '技术分享': 'Tech sharing',
   '创意作品': 'Creative works',
