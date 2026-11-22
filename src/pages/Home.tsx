@@ -65,7 +65,7 @@ export default function Home() {
             height="120"
           />
           <h1>白吟秋</h1>
-          <p>In a cold world, love deeply.</p>
+          <p>Love Deep, World Cold.</p>
           <ul className="hero-tags">
             <li>
               <IconHome />
